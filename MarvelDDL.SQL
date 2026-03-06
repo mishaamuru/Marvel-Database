@@ -9,9 +9,13 @@ CREATE TABLE
         PRIMARY KEY (ActorName, Alias)
     );
     INSERT INTO Superhero VALUES ("Robert Downey Jr.", "IronMan", "Tony Stark", "Dead", "Human", "Known");
+
     INSERT INTO Superhero VALUES ("Chris Evans", "CaptainAmerica", "Steve Rogers", "Retired", "Human", "Known");
+
     INSERT INTO Superhero VALUES ("Chris Hemsworth", "Thor", "Thor Odinson", "Alive", "Asgardian", "Known");
+
     INSERT INTO Superhero VALUES ("Mark Ruffalo", "Hulk", "Bruce Banner", "Alive", "Human", "Known");
+
     INSERT INTO Superhero VALUES ("Scarlett Johansson", "BlackWidow", "Natasha Romanoff", "Dead", "Human", "Unknown");
 
 CREATE TABLE
@@ -26,9 +30,13 @@ CREATE TABLE
         PRIMARY KEY (ActorName, Alias)
     );
     INSERT INTO Villain VALUES ("Tom Hiddleston", "Loki", "Loki Laufeyson", "Alive", "Frost Giant", "Known", "Power");
+
     INSERT INTO Villain VALUES ("Josh Brolin", "Thanos", "Thanos", "Dead", "Titan", "Known", "Overpopulation");
+
     INSERT INTO Villain VALUES ("James Spader", "Ultron", "Ultron", "Destroyed", "AI", "Known", "Evolution");
+
     INSERT INTO Villain VALUES ("Michael B. Jordan", "Killmonger", "Erik Stevens", "Dead", "Human", "Known", "Revenge");
+
     INSERT INTO Villain VALUES ("Cate Blanchett", "Hela", "Hela", "Dead", "Asgardian", "Known", "Conquest");
 
 CREATE TABLE
@@ -41,9 +49,13 @@ CREATE TABLE
     );
 
     INSERT INTO Universe VALUES (616, "Earth-616", "Active", "Main");
+
     INSERT INTO Universe VALUES (199999, "Earth-199999", "Active", "MCU");
+
     INSERT INTO Universe VALUES (838, "Earth-838", "Destroyed", "Alternate");
+
     INSERT INTO Universe VALUES (2149, "Earth-2149", "Destroyed", "Zombie");
+
     INSERT INTO Universe VALUES (1610, "Earth-1610", "Destroyed", "Ultimate");
 
 CREATE TABLE
@@ -57,9 +69,13 @@ CREATE TABLE
     );
 
     INSERT INTO Team VALUES ("Avengers", 6, "Active", "Nick Fury", "Captain America");
+
     INSERT INTO Team VALUES ("Guardians of the Galaxy", 5, "Active", "Yondu", "Star-Lord");
+
     INSERT INTO Team VALUES ("Young Avengers", 5, "Active", "Hawkeye", "Kate Bishop");
+
     INSERT INTO Team VALUES ("Defenders", 4, "Inactive", "Stick", "Daredevil");
+    
     INSERT INTO Team VALUES ("Fantastic Four", 4, "Active", "Reed Richards", "Mr. Fantastic");
 
 CREATE TABLE
