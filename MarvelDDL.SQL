@@ -858,16 +858,7 @@ CREATE TABLE
         FOREIGN KEY (MovieName, MovieReleaseYear) REFERENCES Movie (Name, ReleaseYear)
     );
 
-CREATE TABLE
-    ExistsIn (
-        TeamName VARCHAR(50),
-        EarthNumber INTEGER,
-        PRIMARY KEY (TeamName, EarthNumber),
-        FOREIGN KEY (TeamName) REFERENCES Team (Name),
-        FOREIGN KEY (EarthNumber) REFERENCES Universe (EarthNumber)
-    );
-
-INSERT INTO
+    INSERT INTO
     Features
 VALUES
     (
@@ -921,6 +912,57 @@ VALUES
         "Captain America: The First Avenger",
         2011
     );
+
+
+CREATE TABLE
+    ExistsIn (
+        TeamName VARCHAR(50),
+        EarthNumber INTEGER,
+        PRIMARY KEY (TeamName, EarthNumber),
+        FOREIGN KEY (TeamName) REFERENCES Team (Name),
+        FOREIGN KEY (EarthNumber) REFERENCES Universe (EarthNumber)
+    );
+
+INSERT INTO
+    ExistsIn
+VALUES
+    (
+        "Avengers",
+        199999
+    );
+
+INSERT INTO
+    ExistsIn
+VALUES
+    (
+        "Guardians of the Galaxy",
+        199999
+    );
+
+INSERT INTO
+    ExistsIn
+VALUES
+    (
+        "Fantastic Four",
+        828
+    );
+
+INSERT INTO
+    ExistsIn
+VALUES
+    (
+        "Agents of Wakanda",
+        616
+    );
+
+INSERT INTO
+    ExistsIn
+VALUES
+    (
+        "Black Order",
+        199999
+    );
+
 
 CREATE TABLE
     SetIn (
