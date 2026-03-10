@@ -18,7 +18,7 @@ VALUES
         "Tony Stark",
         "Dead",
         "Human",
-        "Known"
+        "Known "
     );
 
 INSERT INTO
