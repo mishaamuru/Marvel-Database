@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <title>
+            Marvel Database
+        </title>
+    </head>
+    <body>
+        <div class="tab">
+            <h3>Marvel Database</h3>
+            <button class="tablinks" onclick="openTab(event, 'ViewData')">View Data</button>
+            <button class="tablinks" onclick="openTab(event, 'Search')">Search</button>
+            <button class="tablinks" onclick="openTab(event, 'InsertData')">Insert Data</button>
+            <button class="tablinks" onclick="openTab(event, 'Update')">Update</button>
+            <button class="tablinks" onclick="openTab(event, 'Delete')">Delete</button>
+            <button class="tablinks" onclick="openTab(event, 'AdvancedQuery')">Advanced Query</button>
+        </div>
+
+        <div id="ViewData" class="tabcontent">
+            <h2>View Data</h2>
+            <form>
+                Select Table: <select name="selecttable" id="selecttable">
+                    <option value="">Select Table</option>
+                    <option value="superhero">Superhero</option>
+                    <option value="villain">Villain</option>
+                    <option value="movie">Movie</option>
+                    <option value="team">Team</option>
+                    <option value="power">Power</option>
+                    <option value="location">Location</option>
+                    <option value="organization">Organization</option>
+                    <option value="universe">Universe</option>
+                    <option value="infinitystone">Infinity Stone</option>
+                </select>
+                <div class="attribute-row">
+                    <br><br>
+                    Attribute(s): <select name="attributes" id="attributes">
+                        <option value="">Select Attribute</option>
+                        <option value="all">All Columns</option>
+                    </select>
+                    <br><br>
+                    <input type="submit" value="Load">
+                </div>
+            </form>
+            
+            <table>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td>Data</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div id="Search" class="tabcontent">
+            <h2>Search</h2>
+        </div>
+
+        <div id="InsertData" class="tabcontent">
+            <h2>Insert Data</h2>
+        </div>
+
+        <div id="Update" class="tabcontent">
+            <h2>Update</h2>
+        </div>
+
+        <div id="Delete" class="tabcontent">
+            <h2>Delete</h2>
+        </div>
+
+        <div id="AdvancedQuery" class="tabcontent">
+            <h2>Advanced Query</h2>
+        </div>
+
+    </body>
+</html>
