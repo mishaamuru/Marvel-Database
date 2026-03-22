@@ -20,26 +20,28 @@
         <div id="ViewData" class="tabcontent">
             <h2>View Data</h2>
             <form>
-                Select Table: <select name="selecttable" id="selecttable">
-                    <option value="">Select Table</option>
-                    <option value="superhero">Superhero</option>
-                    <option value="villain">Villain</option>
-                    <option value="movie">Movie</option>
-                    <option value="team">Team</option>
-                    <option value="power">Power</option>
-                    <option value="location">Location</option>
-                    <option value="organization">Organization</option>
-                    <option value="universe">Universe</option>
-                    <option value="infinitystone">Infinity Stone</option>
-                </select>
+                <div class="attribute-row select-row">
+                    <label>Select Table:</label> 
+                    <select name="selecttable" id="selecttable">
+                        <option value="">Select Table</option>
+                        <option value="superhero">Superhero</option>
+                        <option value="villain">Villain</option>
+                        <option value="movie">Movie</option>
+                        <option value="team">Team</option>
+                        <option value="power">Power</option>
+                        <option value="location">Location</option>
+                        <option value="organization">Organization</option>
+                        <option value="universe">Universe</option>
+                        <option value="infinitystone">Infinity Stone</option>
+                    </select>
+                    <input type="submit" value="Load" id="Load">
+                </div>
                 <div class="attribute-row">
-                    <br><br>
-                    Attribute(s): <select name="attributes" id="attributes">
+                    <label>Attribute(s):</label> 
+                    <select name="attributes" id="attributes">
                         <option value="">Select Attribute</option>
                         <option value="all">All Columns</option>
                     </select>
-                    <br><br>
-                    <input type="submit" value="Load">
                 </div>
             </form>
             
@@ -62,6 +64,17 @@
 
         <div id="InsertData" class="tabcontent">
             <h2>Insert Data</h2>
+            <form>
+                <label for="SuperheroName">Superhero Name:</label>
+                <input type="text" id="SuperheroName" name="SuperheroName"><br>
+                <label for="Alias">Alias:</label>
+                <input type="text" id="Alias" name="Alias"><br>
+                <label for="CharacterName">Character Name:</label>
+                <input type="text" id="CharacterName" name="CharacterName"><br>
+                <label for="TeamName">Team Name:</label>
+                <input type="text" name="TeamName" id="TeamName"><br>
+                <input type="submit" value="Insert" id="Insert">
+            </form>
         </div>
 
         <div id="Update" class="tabcontent">

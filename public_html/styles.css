@@ -4,7 +4,7 @@ body {
 
 .tab {
     float: left;
-    background-color: #3e4d78;;
+    background-color: #3F4761;;
     width: 20%;
     height: 300vh;
     border: none;
@@ -22,7 +22,7 @@ body {
     transition: 0.3s;
     font-size: larger;
 
-    --background-color: #3e4d78;
+    --background-color: #3F4761;
     --border-size: 4px;
 }
 
@@ -33,7 +33,7 @@ body {
 
 .tab button:active {
     background-color: #3e4d78;
-}
+} /* TDOO: Re-choose the colour once i am done implementing the js */
 
 .tablinks::before {
     content: '';
@@ -64,24 +64,35 @@ h2 {
     padding: .5em;
 }
 
+.select-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
 #selecttable {
+    flex: 1; 
     padding: .5em;
-    border-radius: 1em;
-    width: 88%;
+    border-radius: 5px;
 }
 
 #attributes {
+    width: calc(100% - 118px); 
     padding: .5em;
-    border-radius: 1em;
-    width: 60%;
+    border-radius: 5px;
 }
 
-input {
-    padding: .5em;
-    border-radius: 1em;
-    background-color: #56bcff;
+#Load {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
     border: none;
     color: white;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
 .tabcontent {
@@ -107,5 +118,41 @@ th {
 .attribute-row {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    padding-bottom: 1em;
+}
+
+#Insert {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: var(--accent-color);
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+
+    --accent-color: #577AC6;
+}
+
+#CharacterName, 
+#SuperheroName, 
+#Alias, #TeamName {
+    padding: .5em;
+    border-radius: 5px;
+    width: 82%;
+    border: none;
+}
+
+#InsertData label {
+    display: inline-block;
+    width: 150px;
+    padding-bottom: 1em;
+}
+
+.attribute-row label {
+    display: inline-block;
+    width: 110px;
+    padding-bottom: 1em;
 }
