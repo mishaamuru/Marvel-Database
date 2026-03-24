@@ -231,3 +231,73 @@ function buildSelectionQuery(filters) {
 
     return { query: finalQuery, params };
 }
+
+async function selectSuperheroes(db, filters) {
+    const allowedAttributes = [
+        "ActorName",
+        "Alias",
+        "CharacterName",
+        "Standing",
+        "Species",
+        "PublicIdentity"
+    ];
+
+    const allowedOperators = ["=", "!=", "<", ">", "<=", ">=", "LIKE"];
+    const allowedConnectors = ["AND", "OR"];
+
+    let sql = `
+        SELECT ActorName, Alias, CharacterName, Standing, Species, PublicIdentity
+        FROM Superhero
+    `;
+
+    const conditions = [];
+    const params = {};
+    let paramCount = 1;
+
+    for (let i = 0; i < filters.length; i++) {
+        const filter = filters[i];
+        let { attribute, operator, value, connector } = filter;
+
+        if (value === undefined || value === null || String(value).trim() === "") {
+            continue;
+        }
+
+        if (!allowedAttributes.includes(attribute)) {
+            throw new Error(`Invalid attribute: ${attribute}`);
+        }
+
+        if (!allowedOperators.includes(operator)) {
+            throw new Error(`Invalid operator: ${operator}`);
+        }
+
+        const paramName = `param${paramCount}`;
+        const condition = `${attribute} ${operator} :${paramName}`;
+
+        if (conditions.length === 0) {
+            conditions.push(condition);
+        } else {
+            if (!allowedConnectors.includes(connector)) {
+                throw new Error(`Invalid connector: ${connector}`);
+            }
+            conditions.push(`${connector} ${condition}`);
+        }
+
+        params[paramName] = value;
+        paramCount++;
+    }
+
+    if (conditions.length > 0) {
+        sql += " WHERE " + conditions.join(" ");
+    }
+
+    sql += " ORDER BY Alias";
+
+    const result = await db.execute(sql, params);
+
+    return {
+        success: true,
+        query: sql,
+        params,
+        rows: result.rows
+    };
+}
