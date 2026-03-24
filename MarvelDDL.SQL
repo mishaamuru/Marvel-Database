@@ -550,7 +550,7 @@ CREATE TABLE
         ID INTEGER,
         SkillSet VARCHAR(30),
         Weapon VARCHAR(30),
-        Type VARCHAR(30),
+        WeaponType VARCHAR(30),
         PRIMARY KEY (ID),
         FOREIGN KEY (Weapon) REFERENCES WeaponSource (Weapon)
     );
