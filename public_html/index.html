@@ -40,22 +40,35 @@
             </div>
             <div class="attribute-row">
                 <label>Attribute(s):</label>
-                <select name="attributes" id="attributes">
-                    <option value="">Select Attribute</option>
-                    <option value="all">All Columns</option>
-                </select>
+                <div id="checks" class="dropdown-check-list" tabindex="100">
+                    <span class="anchor">Select Attribute(s):</span>
+                    <ul name="attributes" id="attributes" class="attributes">
+                        <li><input type="checkbox" />A1</li>
+                        <li><input type="checkbox" />A2</li>
+                        <li><input type="checkbox" />A3</li>
+                    </ul>
+                </div>
             </div>
+
         </form>
 
         <table>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-            </tr>
-            <tr>
-                <td>Data</td>
-                <td>Data</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
         </table>
 
     </div>
@@ -130,6 +143,7 @@
         <h2>Advanced Query</h2>
     </div>
 
+    <script src="scripts.js"></script>
 </body>
 
 </html>
