@@ -60,6 +60,48 @@
 
         <div id="Search" class="tabcontent">
             <h2>Search</h2>
+            <search>
+                <form>
+                    <div class="condition-row">
+                        <label>Select Table:</label>
+                        <select name="selecttable" id="selecttable">
+                            <option value="">Select Table</option>
+                            <option value="superhero">Superhero</option>
+                            <option value="villain">Villain</option>
+                            <option value="movie">Movie</option>
+                            <option value="team">Team</option>
+                            <option value="power">Power</option>
+                            <option value="location">Location</option>
+                            <option value="organization">Organization</option>
+                            <option value="universe">Universe</option>
+                            <option value="infinitystone">Infinity Stone</option>
+                        </select>
+                    </div>
+                    <div class="select-attribute">
+                        <label>Add conditions to search:</label>
+                        <select name="search-attribute" id="search-attribute">
+                            <option value="">Select Attribute</option>
+                            <option value="actorName">Actor Name</option>
+                            <option value="alias">Alias</option>
+                            <option value="characterName">Character Name</option>
+                            <option value="species">Species</option>
+                        </select>
+                        <select name="equal" id="equal">
+                            <option value="=">=</option>
+                            <option value="!=">!=</option>
+                            <option value="≤">≤</option>
+                            <option value="≥">≥</option>
+                            <option value="&lt">&lt</option>
+                            <option value="&gt">&gt</option>
+                        </select>
+                        <input type="text" id="search-text" name="search"><br>
+                        <button class="and">+ AND</button>
+                        <button class="or">+ OR</button>
+                        <br>
+                        <input type="submit" value="Search" id="search-button">
+                    </div>
+                </form>
+            </search>
         </div>
 
         <div id="InsertData" class="tabcontent">

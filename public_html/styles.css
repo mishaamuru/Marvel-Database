@@ -83,7 +83,7 @@ h2 {
     border-radius: 5px;
 }
 
-#Load {
+#Load, .and, .or {
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #577AC6;
@@ -93,6 +93,19 @@ h2 {
     font-size: 1em;
     cursor: pointer;
     white-space: nowrap;
+}
+
+#search-button, .and, .or {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-top: 10px;
 }
 
 .tabcontent {
@@ -127,7 +140,7 @@ th {
     border-radius: 5px;
     background-color: var(--accent-color);
     border: none;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     font-size: 1em;
     cursor: pointer;
@@ -142,7 +155,6 @@ th {
     padding: .5em;
     border-radius: 5px;
     width: 82%;
-    border: none;
 }
 
 #InsertData label {
@@ -155,4 +167,40 @@ th {
     display: inline-block;
     width: 110px;
     padding-bottom: 1em;
+}
+
+.select-table {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 1em;
+}
+
+.condition-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 1em;
+}
+
+#search-attribute {
+    flex: 1;
+    padding: .5em;
+    border-radius: 5px; 
+    border: 1px solid #ccc;
+}
+
+#equal {
+    padding: .5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 70px;
+}
+
+#search-text {
+    flex: 2;
+    padding: .5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 150px;
 }
