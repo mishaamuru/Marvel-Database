@@ -149,9 +149,9 @@ th {
     --accent-color: #577AC6;
 }
 
-#CharacterName, 
-#SuperheroName, 
-#Alias, #TeamName {
+#powerid, 
+#heroActorName, 
+#heroAlias, #dateGained {
     padding: .5em;
     border-radius: 5px;
     width: 82%;
