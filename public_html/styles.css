@@ -30,11 +30,6 @@ body {
     padding-left: 1.3em;
 }
 
-.tab button:active {
-    background-color: #3e4d78;
-}
-/* TDOO: Re-choose the colour once i am done implementing the js */
-
 .tablinks::before {
     content: '';
     position: absolute;
@@ -216,6 +211,20 @@ th {
     cursor: pointer;
     white-space: nowrap;
     margin-top: 10px;
+}
+
+#having-button, #nested-button,
+#division-button, #groupby-button {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-bottom: 10px;
 }
 
 #powerid,
