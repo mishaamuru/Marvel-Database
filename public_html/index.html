@@ -15,9 +15,11 @@
         <button class="tablinks" onclick="openTab(event, 'Select')">Select</button>
         <button class="tablinks" onclick="openTab(event, 'InsertData')">Insert Data</button>
         <button class="tablinks" onclick="openTab(event, 'Update')">Update</button>
-        <button class="tablinks" onclick="openTab(event, 'Delete')">Delete</button>
+        <button class="tablinks" onclick="openTab(event, 'Delete/Join')">Delete & Join</button>
         <button class="tablinks" onclick="openTab(event, 'AdvancedQuery')">Advanced Query</button>
     </div>
+
+    <!-- VIEW TAB -->
 
     <div id="ViewData" class="tabcontent">
         <h2>View Data</h2>
@@ -73,6 +75,8 @@
 
     </div>
 
+    <!-- SELECTION TAB -->
+
     <div id="Select" class="tabcontent">
         <h2>Select</h2>
         <search>
@@ -116,6 +120,8 @@
         </search>
     </div>
 
+    <!-- INSERT TAB -->
+
     <div id="InsertData" class="tabcontent">
         <h2>Insert Data</h2>
         <form>
@@ -131,16 +137,179 @@
         </form>
     </div>
 
+    <!-- UPDATE TAB -->
+
     <div id="Update" class="tabcontent">
         <h2>Update</h2>
+        <form>
+            <div class="update-row">
+                <label>Select Power</label>
+                <select id="selecttable">
+                    <option value="">select power</option>
+                    <option value="">1</option>
+                </select>
+            </div>
+
+            <div id="update-nonprimary">
+                <label for="update-skillset">Skill Set:</label>
+                <input type="text" id="update-skillset" name="skillset"><br>
+                <label for="update-weapon">Weapon:</label>
+                <input type="text" id="update-weapon" name="weapon"><br>
+                <label for="update-weaponType">Weapon Type:</label>
+                <input type="text" id="update-weaponType" name="weaponType"><br>
+                <input type="submit" value="Update" id="update">
+            </div>
+        </form>
     </div>
 
-    <div id="Delete" class="tabcontent">
+    <!-- DELETE AND JOIN TAB -->
+
+    <div id="Delete/Join" class="tabcontent">
         <h2>Delete</h2>
+        <form>
+            <div class="delete-row">
+                <label>Select Power</label>
+                <select id="deletetable">
+                    <option value="">select power</option>
+                    <option value="">1</option>
+                </select>
+                <input type="submit" value="Delete" id="Load">
+            </div>
+
+            <h2>Join</h2>
+
+            <div class="first-table">
+                <label>Select First Table:</label>
+                <select name="selecttable" id="selecttable">
+                    <option value="">Select Table</option>
+                    <option value="superhero">Superhero</option>
+                </select>
+            </div>
+
+            <div class="second-table">
+                <label>Select Second Table:</label>
+                <select name="selecttable" id="selecttable">
+                    <option value="">Select Table</option>
+                    <option value="power">Power</option>
+                </select>
+            </div>
+
+            <div class="value">
+                <label for="join-attribute">Find ... for ...:</label>
+                <input type="text" id="join-attribute" name="skillset">
+                <input type="submit" value="Join" id="join">
+            </div>
+
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div id="AdvancedQuery" class="tabcontent">
         <h2>Advanced Query</h2>
+        <h3>GROUP BY</h3>
+        <button id="groupby-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>HAVING</h3>
+        <button id="having-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h3>NESTED AGGREGATION W/ GROUP BY</h3>
+        <button id="nested-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h3>DIVISION</h3>
+        <button id="division-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
     <script src="scripts.js"></script>

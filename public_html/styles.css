@@ -3,15 +3,17 @@ body {
 }
 
 .tab {
-    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: #3F4761;
     width: 20%;
-    height: 300vh;
+    min-height: 100vh;
     border: none;
 }
 
 .tab button {
-    background-color: var(--background-color);
+    background-color: #3F4761;
     position: relative;
     color: white;
     padding: .5em 1em;
@@ -21,9 +23,6 @@ body {
     cursor: pointer;
     transition: 0.3s;
     font-size: larger;
-
-    --background-color: #3F4761;
-    --border-size: 4px;
 }
 
 .tab button:hover {
@@ -42,7 +41,7 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: var(--border-size);
+    width: 4px;
     background-color: #56bcff;
     transition: 300ms ease-in-out;
     transform: scaleY(0);
@@ -55,7 +54,7 @@ body {
     transform: scaleY(1);
 }
 
-h3 {
+.tab h3 {
     color: white;
     padding: 1.3em;
 }
@@ -65,17 +64,44 @@ h2 {
     padding: .5em;
 }
 
-.select-row {
+.select-row, .delete-row {
     display: flex;
     align-items: center;
     gap: 8px;
     width: 100%;
 }
 
-#selecttable {
+.value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+#selecttable, #deletetable, #join-attribute {
     flex: 1;
     padding: .5em;
     border-radius: 5px;
+    min-width: 0;
+}
+
+#join {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.update-row, .first-table, .second-table {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .dropdown-check-list {
@@ -139,7 +165,7 @@ h2 {
 
 #Load,
 .and,
-.or {
+.or, #search-button, #join {
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #577AC6;
@@ -149,21 +175,6 @@ h2 {
     font-size: 1em;
     cursor: pointer;
     white-space: nowrap;
-}
-
-#search-button,
-.and,
-.or {
-    padding: .5em 1.2em;
-    border-radius: 5px;
-    background-color: #577AC6;
-    border: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1em;
-    cursor: pointer;
-    white-space: nowrap;
-    margin-top: 10px;
 }
 
 .tabcontent {
@@ -194,30 +205,31 @@ th {
     padding-bottom: 1em;
 }
 
-#Insert {
+#Insert, #update {
     padding: .5em 1.2em;
     border-radius: 5px;
-    background-color: var(--accent-color);
+    background-color: #577AC6;
     border: none;
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-size: 1em;
     cursor: pointer;
     white-space: nowrap;
-
-    --accent-color: #577AC6;
+    margin-top: 10px;
 }
 
 #powerid,
 #heroActorName,
 #heroAlias,
-#dateGained {
+#dateGained, #update-skillset,
+#update-weapon, #update-weaponType {
     padding: .5em;
     border-radius: 5px;
-    width: 82%;
+    width: 84%;
+    margin-top: 5px;
 }
 
-#InsertData label {
+#InsertData label, #Update label {
     display: inline-block;
     width: 150px;
     padding-bottom: 1em;
