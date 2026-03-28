@@ -1,0 +1,288 @@
+body {
+    font-family: Verdana, sans-serif;
+}
+
+.tab {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #3F4761;
+    width: 20%;
+    min-height: 100vh;
+    border: none;
+}
+
+.tab button {
+    background-color: #3F4761;
+    position: relative;
+    color: white;
+    padding: .5em 1em;
+    width: 100%;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: larger;
+}
+
+.tab button:hover {
+    background-color: #5b6a93;
+    padding-left: 1.3em;
+}
+
+.tablinks::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #56bcff;
+    transition: 300ms ease-in-out;
+    transform: scaleY(0);
+    transform-origin: center;
+}
+
+.tablinks.active::before,
+.tablinks:hover::before,
+.tablinks:focus::before {
+    transform: scaleY(1);
+}
+
+.tab h3 {
+    color: white;
+    padding: 1.3em;
+}
+
+h2 {
+    color: black;
+    padding: .5em;
+}
+
+.select-row, .delete-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+#selecttable, #deletetable, #join-attribute {
+    flex: 1;
+    padding: .5em;
+    border-radius: 5px;
+    min-width: 0;
+}
+
+#join {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.update-row, .first-table, .second-table {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.dropdown-check-list {
+    display: inline-block;
+    position: relative;
+    width: calc(100% - 130px);
+}
+
+.dropdown-check-list .anchor {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 40px 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 130px);
+}
+
+.dropdown-check-list .anchor::after {
+    position: absolute;
+    content: "";
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    padding: 5px;
+    right: 10px;
+    top: 20%;
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active::after {
+    right: 8px;
+    top: 21%;
+}
+
+.dropdown-check-list ul.attributes {
+    padding: 2px;
+    display: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    position: absolute;
+    min-width: 880px;
+    background-color: white;
+}
+
+.dropdown-check-list ul.attributes li {
+  list-style: none;
+}
+
+.dropdown-check-list.visible .anchor {
+  color: #0094ff;
+}
+
+.dropdown-check-list.visible .attributes {
+  display: block;
+}
+
+#Load,
+.and,
+.or, #search-button, #join {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tabcontent {
+    margin-left: 20%;
+    padding: 1.3em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: .5em;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+.attribute-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 1em;
+}
+
+#Insert, #update {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-top: 10px;
+}
+
+#having-button, #nested-button,
+#division-button, #groupby-button {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+#powerid,
+#heroActorName,
+#heroAlias,
+#dateGained, #update-skillset,
+#update-weapon, #update-weaponType {
+    padding: .5em;
+    border-radius: 5px;
+    width: 84%;
+    margin-top: 5px;
+}
+
+#InsertData label, #Update label {
+    display: inline-block;
+    width: 150px;
+    padding-bottom: 1em;
+}
+
+.attribute-row label {
+    display: inline-block;
+    width: 110px;
+    padding-bottom: 1em;
+}
+
+.select-table {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 1em;
+}
+
+.condition-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 1em;
+}
+
+#search-attribute {
+    flex: 1;
+    padding: .5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+#equal {
+    padding: .5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 70px;
+}
+
+#search-text {
+    flex: 2;
+    padding: .5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 150px;
+}

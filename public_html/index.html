@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>
+        Marvel Database
+    </title>
+</head>
+
+<body>
+    <div class="tab">
+        <h3>Marvel Database</h3>
+        <button class="tablinks" onclick="openTab(event, 'ViewData')" id="defaultOpen">View Data</button>
+        <button class="tablinks" onclick="openTab(event, 'Select')">Select</button>
+        <button class="tablinks" onclick="openTab(event, 'InsertData')">Insert Data</button>
+        <button class="tablinks" onclick="openTab(event, 'Update')">Update</button>
+        <button class="tablinks" onclick="openTab(event, 'Delete/Join')">Delete & Join</button>
+        <button class="tablinks" onclick="openTab(event, 'AdvancedQuery')">Advanced Query</button>
+    </div>
+
+    <!-- VIEW TAB -->
+
+    <div id="ViewData" class="tabcontent">
+        <h2>View Data</h2>
+        <form>
+            <div class="attribute-row select-row">
+                <label>Select Table:</label>
+                <select name="selecttable" id="selecttable">
+                    <option value="">Select Table</option>
+                    <option value="superhero">Superhero</option>
+                    <option value="villain">Villain</option>
+                    <option value="movie">Movie</option>
+                    <option value="team">Team</option>
+                    <option value="power">Power</option>
+                    <option value="location">Location</option>
+                    <option value="organization">Organization</option>
+                    <option value="universe">Universe</option>
+                    <option value="infinitystone">Infinity Stone</option>
+                </select>
+                <input type="submit" value="Load" id="Load">
+            </div>
+            <div class="attribute-row">
+                <label>Attribute(s):</label>
+                <div id="checks" class="dropdown-check-list" tabindex="100">
+                    <span class="anchor">Select Attribute(s):</span>
+                    <ul name="attributes" id="attributes" class="attributes">
+                        <li><input type="checkbox" />A1</li>
+                        <li><input type="checkbox" />A2</li>
+                        <li><input type="checkbox" />A3</li>
+                    </ul>
+                </div>
+            </div>
+
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- SELECTION TAB -->
+
+    <div id="Select" class="tabcontent">
+        <h2>Select</h2>
+        <search>
+            <form>
+                <div class="attribute-row select-row">
+                    <label>Select Table:</label>
+                    <select name="selecttable" id="selecttable">
+                        <option value="superhero">Superhero</option>
+                    </select>
+                </div>
+
+                <label>Add conditions to select:</label>
+                <div id="conditions">
+                    <div class="condition-row">
+                        <select name="search-attribute" id="search-attribute">
+                            <option value="">Select Attribute</option>
+                            <option value="actorName">Actor Name</option>
+                            <option value="alias">Alias</option>
+                            <option value="characterName">Character Name</option>
+                            <option value="standing">Standing</option>
+                            <option value="species">Species</option>
+                            <option value="publicIdentity">Public Identity</option>
+                        </select>
+                        <select name="equal" id="equal">
+                            <option value="=">=</option>
+                            <option value="!=">!=</option>
+                            <option value="&lt">&lt</option>
+                            <option value="&gt">&gt</option>
+                        </select>
+                        <input type="text" id="search-text" name="search"><br>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button type="button" class="and">+ AND</button>
+                    <button tpye="button" class="or">+ OR</button>
+                </div>
+                <br>
+                <input type="submit" value="Search" id="search-button">
+            </form>
+        </search>
+    </div>
+
+    <!-- INSERT TAB -->
+
+    <div id="InsertData" class="tabcontent">
+        <h2>Insert Data</h2>
+        <form>
+            <label for="heroActorName">Hero Actor Name:</label>
+            <input type="text" id="heroActorName" name="heroActorName"><br>
+            <label for="heroAlias">Hero Alias:</label>
+            <input type="text" id="heroAlias" name="heroAlias"><br>
+            <label for="powerid">PowerID:</label>
+            <input type="text" id="powerid" name="powerid"><br>
+            <label for="dateGained">Date Gained:</label>
+            <input type="text" name="dateGained" id="dateGained"><br>
+            <input type="submit" value="Insert" id="Insert">
+        </form>
+    </div>
+
+    <!-- UPDATE TAB -->
+
+    <div id="Update" class="tabcontent">
+        <h2>Update</h2>
+        <form>
+            <div class="update-row">
+                <label>Select Power</label>
+                <select id="selecttable">
+                    <option value="">select power</option>
+                    <option value="">1</option>
+                </select>
+            </div>
+
+            <div id="update-nonprimary">
+                <label for="update-skillset">Skill Set:</label>
+                <input type="text" id="update-skillset" name="skillset"><br>
+                <label for="update-weapon">Weapon:</label>
+                <input type="text" id="update-weapon" name="weapon"><br>
+                <label for="update-weaponType">Weapon Type:</label>
+                <input type="text" id="update-weaponType" name="weaponType"><br>
+                <input type="submit" value="Update" id="update">
+            </div>
+        </form>
+    </div>
+
+    <!-- DELETE AND JOIN TAB -->
+
+    <div id="Delete/Join" class="tabcontent">
+        <h2>Delete</h2>
+        <form>
+            <div class="delete-row">
+                <label>Select Power</label>
+                <select id="deletetable">
+                    <option value="">select power</option>
+                    <option value="">1</option>
+                </select>
+                <input type="submit" value="Delete" id="Load">
+            </div>
+
+            <h2>Join</h2>
+
+            <div class="first-table">
+                <label>Select First Table:</label>
+                <select name="selecttable" id="selecttable">
+                    <option value="">Select Table</option>
+                    <option value="superhero">Superhero</option>
+                </select>
+            </div>
+
+            <div class="second-table">
+                <label>Select Second Table:</label>
+                <select name="selecttable" id="selecttable">
+                    <option value="">Select Table</option>
+                    <option value="power">Power</option>
+                </select>
+            </div>
+
+            <div class="value">
+                <label for="join-attribute">Find ... for ...:</label>
+                <input type="text" id="join-attribute" name="skillset">
+                <input type="submit" value="Join" id="join">
+            </div>
+
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="AdvancedQuery" class="tabcontent">
+        <h2>Advanced Query</h2>
+        <h3>GROUP BY</h3>
+        <button id="groupby-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>HAVING</h3>
+        <button id="having-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h3>NESTED AGGREGATION W/ GROUP BY</h3>
+        <button id="nested-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <h3>DIVISION</h3>
+        <button id="division-button">Run Query</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
