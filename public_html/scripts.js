@@ -103,6 +103,30 @@ document.querySelector(".or").addEventListener("click", async function () {
   document.getElementById("conditions").appendChild(newDiv);
 });
 
+// Insert Tab
+document.querySelector("#insert-button").addEventListener("click", async function () {
+  const heroname = document.querySelector("#heroActorName").value;
+  const heroalias = document.querySelector("#heroAlias").value;
+  const powerid = document.querySelector("#powerid").value;
+  const dategained = document.querySelector("#dateGained").value;
+
+  const response = await fetch("/heroHasPower", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({heroActorName: heroname, heroAlias: heroalias, powerID: Number(powerid), dateGained: dategained})
+  });
+
+  const result = await response.json();
+  if (response.ok) {
+    document.getElementById("insert-message").textContent = result.success;
+  } else {
+    document.getElementById("insert-message").textContent = result.error;
+  }
+
+});
+
 // Delete Tab
 (async function () {
   const response = await fetch("/powers");
