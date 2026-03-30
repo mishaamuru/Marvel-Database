@@ -115,7 +115,7 @@ document.querySelector("#insert-button").addEventListener("click", async functio
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({heroActorName: heroname, heroAlias: heroalias, powerID: Number(powerid), dateGained: dategained})
+    body: JSON.stringify({ heroActorName: heroname, heroAlias: heroalias, powerID: Number(powerid), dateGained: dategained })
   });
 
   const result = await response.json();
@@ -125,6 +125,41 @@ document.querySelector("#insert-button").addEventListener("click", async functio
     document.getElementById("insert-message").textContent = result.error;
   }
 
+});
+
+// Update Tab
+(async function () {
+  const response = await fetch("/powers");
+  const result = await response.json();
+  const powerid = document.querySelector("#updatetable");
+  powerid.innerHTML = result.data.map(val => `<option value=${val[0]}>${val[0]}</option>`).join("");
+})();
+
+document.querySelector("#update-button").addEventListener("click", async function () {
+  const body = {};
+  const updateid = document.getElementById("updatetable").value;
+  const updateskill = document.getElementById("update-skillset").value;
+  const updateweapon = document.getElementById("update-weapon").value;
+  const updateweapontype = document.getElementById("update-weaponType").value;
+
+  if (updateskill !== "") body.SkillSet = updateskill;
+  if (updateweapon !== "") body.Weapon = updateweapon;
+  if (updateweapontype !== "") body.WeaponType = updateweapontype;
+
+  const response = await fetch(`/powers/${updateid}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  const result = await response.json();
+  if (response.ok) {
+    document.getElementById("update-message").textContent = result.success;
+  } else {
+    document.getElementById("update-message").textContent = result.error;
+  }
 });
 
 // Delete Tab
