@@ -91,7 +91,7 @@
                 <label>Add conditions to select:</label>
                 <div id="conditions">
                     <div class="condition-row">
-                        <select name="search-attribute" id="search-attribute", class="search-attribute">
+                        <select name="search-attribute" id="search-attribute" , class="search-attribute">
                             <option value="">Select Attribute</option>
                             <option value="ActorName">Actor Name</option>
                             <option value="Alias">Alias</option>
@@ -102,6 +102,9 @@
                         </select>
                         <select name="equal" id="equal">
                             <option value="=">=</option>
+                            <option value="!=">!=</option>
+                            <option value="&lt">&lt</option>
+                            <option value="&gt">&gt</option>
                         </select>
                         <input type="text" class="search-text" id="search-text" name="search"><br>
                     </div>
@@ -109,7 +112,7 @@
 
                 <div class="button-row">
                     <button type="button" class="and">+ AND</button>
-                    <button tpye="button" class="or">+ OR</button>
+                    <button type="button" class="or">+ OR</button>
                 </div>
                 <br>
                 <input type="button" value="Search" id="search-button">
@@ -238,18 +241,20 @@
         </table>
     </div>
 
+    <!-- ADVANCED QUERY TAB -->
+
     <div id="AdvancedQuery" class="tabcontent">
         <h2>Advanced Query</h2>
         <h3>GROUP BY</h3>
         <button id="groupby-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="groupby-thead">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="groupby-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>
@@ -264,13 +269,13 @@
         <h3>HAVING</h3>
         <button id="having-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="having-thead">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="having-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>
@@ -308,13 +313,13 @@
         <h3>DIVISION</h3>
         <button id="division-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="division-thead">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="division-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>

@@ -32,6 +32,22 @@ checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
     checkList.classList.add('visible');
 }
 
+function newCondition() {
+  return `<select name="search-attribute" class="search-attribute">
+                            <option value="">Select Attribute</option>
+                            <option value="ActorName">Actor Name</option>
+                            <option value="Alias">Alias</option>
+                            <option value="CharacterName">Character Name</option>
+                            <option value="Standing">Standing</option>
+                            <option value="Species">Species</option>
+                            <option value="PublicIdentity">Public Identity</option>
+                        </select>
+                        <select name="equal">
+                            <option value="=">=</option>
+                        </select>
+                        <input type="text" class="search-text" name="search"><br></br>`
+}
+
 // Select Tab
 document.getElementById("search-button").addEventListener("click", async function () {
   const rows = document.querySelectorAll(".condition-row");
@@ -71,22 +87,6 @@ document.getElementById("search-button").addEventListener("click", async functio
   }
 });
 
-function newCondition() {
-  return `<select name="search-attribute" class="search-attribute">
-                            <option value="">Select Attribute</option>
-                            <option value="ActorName">Actor Name</option>
-                            <option value="Alias">Alias</option>
-                            <option value="CharacterName">Character Name</option>
-                            <option value="Standing">Standing</option>
-                            <option value="Species">Species</option>
-                            <option value="PublicIdentity">Public Identity</option>
-                        </select>
-                        <select name="equal">
-                            <option value="=">=</option>
-                        </select>
-                        <input type="text" class="search-text" name="search"><br></br>`
-}
-
 document.querySelector(".and").addEventListener("click", async function () {
   const newDiv = document.createElement("div");
   newDiv.classList.add("condition-row");
@@ -101,4 +101,66 @@ document.querySelector(".or").addEventListener("click", async function () {
   newDiv.dataset.logic = "OR";
   newDiv.innerHTML = newCondition();
   document.getElementById("conditions").appendChild(newDiv);
+});
+
+// Advanced Query Tab
+document.querySelector("#groupby-button").addEventListener("click", async function () {
+  const response = await fetch("/villains/standing-count", {
+    method: 'GET'
+  });
+
+  const result = await response.json();
+  const tableHead = document.querySelector("#groupby-thead");
+  const tableBody = document.querySelector("#groupby-tbody");
+
+  if (result.data.length === 0) {
+    console.log("No data returned");
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+  } else {
+    tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+    tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+  }
+});
+
+document.querySelector("#having-button").addEventListener("click", async function () {
+  const response = await fetch("/villains/species-count", {
+    method: 'GET',
+  });
+
+  const result = await response.json();
+  const tableHead = document.querySelector("#having-thead");
+  const tableBody = document.querySelector("#having-tbody");
+
+  if (result.data.length === 0) {
+    console.log("No data returned");
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+  } else {
+    tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+    tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+  }
+});
+
+document.querySelector("#nested-button").addEventListener("click", async function () {
+  // TODO
+});
+
+document.querySelector("#division-button").addEventListener("click", async function () {
+  const response = await fetch("/superheroes/space-stone-powers", {
+    method: 'GET',
+  });
+
+  const result = await response.json();
+  const tableHead = document.querySelector("#division-thead");
+  const tableBody = document.querySelector("#division-tbody");
+
+  if (result.data.length === 0) {
+    console.log("No data returned");
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+  } else {
+    tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+    tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+  }
 });
