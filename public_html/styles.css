@@ -73,7 +73,9 @@ h2 {
     margin-bottom: 10px;
 }
 
-#selecttable, #deletetable, #join-attribute {
+#selecttable, #deletetable, 
+#join-attribute, #viewtable,
+#updatetable, #firsttable, #secondtable {
     flex: 1;
     padding: .5em;
     border-radius: 5px;
