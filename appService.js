@@ -142,11 +142,67 @@ async function countDemotable() {
     });
 }
 
+async function checkHeroExists(heroActorName, heroAlias) {
+    //TODO
+}
+
+async function checkPowerExists(powerID) {
+    //TODO
+}
+
+async function insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained) {
+    //TODO
+}
+
+async function updatePower(powerID, SkillSet, Weapon, WeaponType) {
+    //TODO
+}
+
+async function getPowers() {
+    //TODO
+}
+
+async function deletePower(powerID) {
+    //TODO
+}
+
+async function searchBody(body) {
+    //TODO
+}
+
+async function universeProjection(fields) {
+    //TODO
+}
+
+async function getVillainStandingCount() {
+    //TODO
+}
+
+async function getVillainSpeciesCount() {
+    //TODO
+}
+
+async function getSuperheroesWithSpaceStonePowers() {
+    //TODO
+}
+
+
 module.exports = {
     testOracleConnection,
     fetchDemotableFromDb,
     initiateDemotable, 
     insertDemotable, 
     updateNameDemotable, 
-    countDemotable
+    countDemotable,
+    checkHeroExists,
+    checkPowerExists,
+    insertHeroHasPower,
+    updatePower,
+    getPowers,
+    deletePower,
+    searchBody,
+    universeProjection,
+    getVillainStandingCount,
+    getVillainSpeciesCount,
+    getSuperheroesWithSpaceStonePowers,
 };

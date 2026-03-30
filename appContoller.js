@@ -30,6 +30,7 @@ router.post("/initiate-demotable", async (req, res) => {
 });
 
 
+//these are the REST APIs, the hard code is in appService.js -> all the endpoints reference functions in it
 
 //this is for insertion, and it is to insert into table HeroHasPower
 router.post("/heroHasPower", async (req, res) => {
