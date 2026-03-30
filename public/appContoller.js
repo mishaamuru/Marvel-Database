@@ -1,6 +1,6 @@
 const express = require('express');
 const appService = require('./appService');
-const validation = require('./validation');
+const validation = require('../validation');
 const router = express.Router();
 
 //checking for connection
