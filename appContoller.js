@@ -1,6 +1,6 @@
 const express = require('express');
 const appService = require('./appService');
-
+const validation = require('./validation');
 const router = express.Router();
 
 //checking for connection
@@ -18,6 +18,8 @@ router.get('/demotable', async (req, res) => {
     res.json({data: tableContent});
 });
 
+
+
 router.post("/initiate-demotable", async (req, res) => {
     const initiateResult = await appService.initiateDemotable();
     if (initiateResult) {
@@ -27,11 +29,13 @@ router.post("/initiate-demotable", async (req, res) => {
     }
 });
 
+
+
 //this is for insertion, and it is to insert into table HeroHasPower
 router.post("/heroHasPower", async (req, res) => {
     const {heroActorName, heroAlias, powerID, dateGained} = req.body;
     //validation to ensure that the fields have values
-    const checkValidation = insertValidate(heroActorName, heroAlias, powerID, dateGained);
+    const checkValidation = validation.insertValidate(heroActorName, heroAlias, powerID, dateGained);
     if (checkValidation !== "everything looks good") {
         res.status(422).json({error: checkValidation});
         return;
@@ -54,19 +58,7 @@ router.post("/heroHasPower", async (req, res) => {
     return;
 })
 
-//helper for insert, checks for validation
-function insertValidate(heroActorName, heroAlias, powerID, dateGained) {
-    if (!heroActorName || !heroAlias || powerID === undefined || powerID === null || !dateGained) {
-        return "All fields must be non-empty.";
-    }
-    if (typeof heroActorName != "string") return "The Actor Name must be a string";
-    if (typeof heroAlias != "string") return "The Alias Name must be a string";
-    if (!Number.isInteger(powerID)) return "The Power ID must be an integer";
-    if (typeof dateGained !== "string" || isNaN(Date.parse(dateGained))) {
-        return "The date gained must be a valid date string";
-    }
-    return "everything looks good";
-}
+
 
 //this is for update, and this will update power
 router.put("/powers/:powerid", async (req, res) => {
@@ -81,7 +73,7 @@ router.put("/powers/:powerid", async (req, res) => {
     );*/
     const powerID = Number(req.params.powerid);
     const {SkillSet, Weapon, WeaponType} = req.body;
-    const checkValidation = updateValidate(SkillSet, Weapon, WeaponType);
+    const checkValidation = validation.updateValidate(SkillSet, Weapon, WeaponType);
     if (checkValidation !== "everything looks good") {
         res.status(422).json({error: checkValidation});
         return;
@@ -101,22 +93,13 @@ router.get("/powers", async (req, res) => {
     res.status(200).json({data: getPowers});
 })
 
-//validation for update
-function updateValidate(SkillSet, Weapon, WeaponType) {
-    if (SkillSet === undefined && Weapon === undefined && WeaponType === undefined) {
-        return "At least one field for update must be provided";
-    }
-    if (typeof SkillSet != "string" && SkillSet !== undefined ) return "Skill Set must be a string";
-    if (typeof WeaponType != "string" && WeaponType !== undefined ) return "Weapon Type must be a string";
-    if (typeof Weapon != "string" && Weapon !== undefined ) return "Weapon must be a string";
-    return "everything looks good";
-}
+
 
 //this is for delete, and it is to delete from Power
 //How it is done: By specifying the primary key
 router.delete("/powers/:powerid", async (req, res) => {
     const powerID = Number(req.params.powerid);
-    const exists = await deleteValidate(powerID);
+    const exists = await validation.deleteValidate(powerID);
     if (!exists) {
         res.status(422).json({error: "There is no power with Power ID: " + powerID});
         return;
@@ -130,20 +113,11 @@ router.delete("/powers/:powerid", async (req, res) => {
     return
 })
 
-//validation for delete, to see if the powerID exists
-async function deleteValidate(powerID) {
-    if (!Number.isInteger(powerID)) {
-        return false;
-    }
-    const getPowers = await appService.getPowers();
-    const check = getPowers.filter((p) => p.ID === powerID);
-    if (check.length === 0) return false;
-    return true;
-}
+
 
 //this is for selection, this is implemented for the table Superhero
 router.post("/superhero/search", async (req, res) => {
-    const validateBody = validateSearchBody(req.body);
+    const validateBody = validation.validateSearchBody(req.body);
     if (validateBody !== "everything looks good") {
         res.status(422).json({error: validateBody});
         return;
@@ -153,52 +127,76 @@ router.post("/superhero/search", async (req, res) => {
     res.status(200).json({ data: parseData });
 })
 
-function validateSearchBody(body) {
-    /* Superhero (
-        ActorName VARCHAR(50),
-        Alias VARCHAR(50),
-        CharacterName VARCHAR(50),
-        Standing VARCHAR(30),
-        Species VARCHAR(30),
-        PublicIdentity VARCHAR(30),
-        PRIMARY KEY (ActorName, Alias)
+//projection query, implementing it on universes
+router.get("/universes", async (req, res) => {
+    //Universe table
+    /*  Universe (
+        EarthNumber INTEGER,
+        Name VARCHAR(20),
+        Status VARCHAR(20),
+        Timeline VARCHAR(20),
+        PRIMARY KEY (EarthNumber)
     ); */
-    const allowedConnectors = ["AND", "OR"];
-    //these are all the attributes in the table Superhero, which is what Selection is implemented on.
-    const allowedAttributes = [
-        "ActorName",
-        "Alias",
-        "CharacterName",
-        "Standing",
-        "Species",
-        "PublicIdentity"
-    ];
-    
-    if (!Array.isArray(body) || body.length === 0) {
-        return "Conditions must be a non-empty array";
+    const fieldParams = req.query.fields;
+    if (!fieldParams) {
+        res.status(422).json({error: "there needs to be a fields query parameter"});
+        return;
     }
-
-    for (let i = 0; i < body.length; i++) {
-        const condition = body[i];
-        const { field, value, logic } = condition;
-
-        if (!allowedAttributes.includes(field)) {
-            return `Invalid field: ${field}`;
-        }
-
-        if (typeof value !== "string" && typeof value !== "number") {
-            return `Invalid value for field: ${field}`;
-        }
-
-        if (i > 0 && logic !== "AND" && logic !== "OR") {
-            return `Condition ${i} must have logic AND or OR`;
-        }
-
-        if (i === 0 && logic !== undefined) {
-            return "The first condition cannot have logic";
-        }
+    //this will give an array splitting the elements based on where the comma is
+    const fields = fieldsParam.split(",");
+    const validationCheck = validation.validateProjection(fields);
+    if (validationCheck !== "everything looks good") {
+        res.status(422).json({error: validation});
+        return;
     }
+    const result = await appService.universeProjection(fields);
+    res.status(200).json({data: result});
+    return;
 
-    return "everything looks good";
+})
 
-}
+//join query 
+//TODO
+
+//aggregation with GROUP BY
+//implemented on the Villian relation, grouping with Standing, and it will show the count of those dead/alive
+router.get("/villains/standing-count", async (req, res) => {
+    try {
+        const result = await appService.getVillainStandingCount();
+        return res.status(200).json({ data: result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
+//aggregation with HAVING
+//implemented on the Villian relation, grouping with Species, where the count of Species is greater than 5
+router.get("/villains/species-count", async (req, res) => {
+    try {
+        const result = await appService.getVillainSpeciesCount();
+        return res.status(200).json({ data: result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+//nested aggregation with group by
+//TODO
+
+//division query for the table HeroHasPower
+//this will find superheroes whose power comes from the Space Stone
+//hardcoded, so no input from user
+router.get("/superheroes/space-stone-powers", async (req, res) => {
+    try {
+        const result = await appService.getSuperheroesWithSpaceStonePowers();
+        return res.status(200).json({ data: result });
+    } catch (error) {
+        console.error(err);
+        res.status(500).json({ error: "Internal server error" });
+        return;
+    }
+})
+
