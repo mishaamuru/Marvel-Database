@@ -1,4 +1,4 @@
-// Hids the tabs and only shows selected tab
+// Hides the tabs and only shows selected tab
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
 
@@ -32,11 +32,6 @@ checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
     checkList.classList.add('visible');
 }
 
-async function loadIntoTable(url, table) {
-  const tableHead = table.querySelector("select-thead");
-  const tableBody = table.querySelector("select-tbody");
-}
-
 // Select Tab
 document.getElementById("search-button").addEventListener("click", async function () {
   const rows = document.querySelectorAll(".condition-row");
@@ -48,9 +43,9 @@ document.getElementById("search-button").addEventListener("click", async functio
     const logic = row.dataset.logic;
 
     if (index === 0) {
-      conditions.push({field, value});
+      conditions.push({ field, value });
     } else {
-      conditions.push({field, value, logic});
+      conditions.push({ field, value, logic });
     }
   });
 
@@ -76,11 +71,8 @@ document.getElementById("search-button").addEventListener("click", async functio
   }
 });
 
-document.querySelector(".and").addEventListener("click", async function () {
-  const newDiv = document.createElement("div");
-  newDiv.classList.add("condition-row");
-  newDiv.dataset.logic = "AND";
-  newDiv.innerHTML = `<select name="search-attribute" class="search-attribute">
+function newCondition() {
+  return `<select name="search-attribute" class="search-attribute">
                             <option value="">Select Attribute</option>
                             <option value="ActorName">Actor Name</option>
                             <option value="Alias">Alias</option>
@@ -93,6 +85,13 @@ document.querySelector(".and").addEventListener("click", async function () {
                             <option value="=">=</option>
                         </select>
                         <input type="text" class="search-text" name="search"><br></br>`
+}
+
+document.querySelector(".and").addEventListener("click", async function () {
+  const newDiv = document.createElement("div");
+  newDiv.classList.add("condition-row");
+  newDiv.dataset.logic = "AND";
+  newDiv.innerHTML = newCondition();
   document.getElementById("conditions").appendChild(newDiv);
 });
 
@@ -100,18 +99,6 @@ document.querySelector(".or").addEventListener("click", async function () {
   const newDiv = document.createElement("div");
   newDiv.classList.add("condition-row");
   newDiv.dataset.logic = "OR";
-    newDiv.innerHTML = `<select name="search-attribute" class="search-attribute">
-                            <option value="">Select Attribute</option>
-                            <option value="ActorName">Actor Name</option>
-                            <option value="Alias">Alias</option>
-                            <option value="CharacterName">Character Name</option>
-                            <option value="Standing">Standing</option>
-                            <option value="Species">Species</option>
-                            <option value="PublicIdentity">Public Identity</option>
-                        </select>
-                        <select name="equal">
-                            <option value="=">=</option>
-                        </select>
-                        <input type="text" class="search-text" name="search"><br></br>`
+  newDiv.innerHTML = newCondition();
   document.getElementById("conditions").appendChild(newDiv);
 });
