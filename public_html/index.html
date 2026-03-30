@@ -192,7 +192,8 @@
                     <option value="">select power</option>
                     <option value="">1</option>
                 </select>
-                <input type="submit" value="Delete" id="Load">
+                <input type="button" value="Delete" id="delete-button">
+                <p id="delete-message"></p>
             </div>
 
             <h2>Join</h2>
@@ -291,13 +292,14 @@
         <h3>NESTED AGGREGATION W/ GROUP BY</h3>
         <button id="nested-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="nested-thead">
                 <tr>
+
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="nested-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>

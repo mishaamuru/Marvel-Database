@@ -103,6 +103,31 @@ document.querySelector(".or").addEventListener("click", async function () {
   document.getElementById("conditions").appendChild(newDiv);
 });
 
+// Delete Tab
+(async function () {
+  const response = await fetch("/powers");
+  const result = await response.json();
+  const powerid = document.querySelector("#deletetable");
+  powerid.innerHTML = result.data.map(val => `<option value=${val[0]}>${val[0]}</option>`).join("");
+})();
+
+document.querySelector("#delete-button").addEventListener("click", async function () {
+  const id = document.getElementById("deletetable").value;
+
+  const response = await fetch(`/powers/${id}`, {
+    method: 'DELETE'
+  });
+
+  const result = await response.json();
+
+  if (response.ok) {
+    document.getElementById("delete-message").textContent = result.success;
+  } else {
+    document.getElementById("delete-message").textContent = result.error;
+  }
+});
+
+
 // Advanced Query Tab
 document.querySelector("#groupby-button").addEventListener("click", async function () {
   const response = await fetch("/villains/standing-count", {
