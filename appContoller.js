@@ -173,10 +173,12 @@ router.get("/villains/standing-count", async (req, res) => {
 
 
 //aggregation with HAVING
-//implemented on the Villian relation, grouping with Species, where the count of Species is greater than 5
+//This query groups superheroes by Species and counts how many heroes are in each group.
+//It then filters the groups to only include species that have more than one superhero.
+
 router.get("/villains/species-count", async (req, res) => {
     try {
-        const result = await appService.getVillainSpeciesCount();
+        const result = await appService.getSuperheroSpeciesCount();
         return res.status(200).json({ data: result });
     } catch (error) {
         console.error(error);

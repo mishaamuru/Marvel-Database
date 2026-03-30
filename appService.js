@@ -142,48 +142,237 @@ async function countDemotable() {
     });
 }
 
+//check that the hero exists in the database
 async function checkHeroExists(heroActorName, heroAlias) {
-    //TODO
+    return await withOracleDB(async (connection) => {
+        const heroCheckSql = `
+        SELECT COUNT(*) AS count
+        FROM Superhero
+        WHERE ActorName = :heroActorName
+          AND Alias = :heroAlias`
+        ;
+
+        const heroCheck = await connection.execute(
+            heroCheckSql,
+            { heroActorName, heroAlias }
+        );
+
+        return heroCheck.rows[0][0] > 0;
+    }).catch(() => {
+        return false;
+    })
 }
 
+//this is to check if the power with that power ID even exists in the database
 async function checkPowerExists(powerID) {
-    //TODO
+    return await withOracleDB(async (connection) => {
+        const powerCheckSql = `
+        SELECT COUNT(*) AS count
+        FROM Power
+        WHERE ID = :powerID`
+        ;
+        const powerCheck = await connection.execute(powerCheckSql,
+            {powerID}
+        );
+        return powerCheck.rows[0][0] > 0;
+    }).catch(() => {
+        return false;
+    });
 }
 
+//insertion of the Hero with that Power
 async function insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained) {
-    //TODO
+    return await withOracleDB(async (connection) => {
+        const insertSql = `
+        INSERT INTO HeroHasPower (HeroActorName, HeroAlias, PowerID, DateGained)
+        VALUES (:heroActorName, :heroAlias, :powerID, :dateGained)
+        `;
+
+        await connection.execute(insertSql, 
+            {heroActorName, heroAlias, powerID, dateGained},
+            {autoCommit: true }
+        );
+        return true;
+    }).catch(() => {
+        return false;
+    });
 }
 
-async function updatePower(powerID, SkillSet, Weapon, WeaponType) {
-    //TODO
+//updtates power with the new fields, also checks if any of the parameters are undefined
+async function updatePower(powerID, skillSet, weapon, weaponType) {
+    return await withOracleDB(async (connection) => {
+        const updates = [];
+        const params = {powerID};
+        if (skillSet !== undefined) {
+            updates.push("SkillSet = :SkillSet")
+            params.SkillSet = skillSet;
+        }
+        if (weapon !== undefined) {
+            updates.push("Weapon = :Weapon")
+            params.Weapon = weapon;
+        }
+        if (weaponType !== undefined) {
+            updates.push("WeaponType = :WeaponType")
+            params.WeaponType = weaponType;
+        }
+        const sql = `
+            UPDATE Power
+            SET ${updates.join(", ")}
+            WHERE ID = :powerID
+        `;
+
+        const result = await connection.execute(sql, params, { autoCommit: true });
+
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
+    })
 }
 
+//this will retrieve all the power tuples that the user can update on
 async function getPowers() {
-    //TODO
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Power`;
+        const result = await connection.execute(sql);
+        return result;
+    }).catch(() => {
+        return [];
+    });
 }
 
+//this will delete the tuples with this powerID
 async function deletePower(powerID) {
-    //TODO
+    return await withOracleDB(async (connection) => {
+        const sql = `
+        DELETE FROM Power 
+        WHERE ID = :powerID`;
+        const result = await connection.execute(sql, {powerID}, { autoCommit: true });
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
+    })
 }
 
+//this will search through SuperHero and Select Tuples where 
 async function searchBody(body) {
-    //TODO
+    return await withOracleDB(async (connection) => {
+        const conditions = [];
+        const params = {};
+        for (let i = 0; i < body.length; i++) {
+            const condition = body[i];
+            const { field, value, logic } = condition;
+
+            const bindName = `value${i}`;
+
+            if (i === 0) {
+                conditions.push(`${field} = :${bindName}`);
+            } else {
+                conditions.push(`${logic} ${field} = :${bindName}`);
+            }
+
+            params[bindName] = value;
+        }
+
+        const sql = `
+        SELECT *
+        FROM Superhero
+        WHERE ${conditions.join(" ")}`;
+
+        const result = await connection.execute(sql, params, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    })
 }
 
+//this is for Universes and projection
 async function universeProjection(fields) {
-    //TODO
+    return await withOracleDB(async (connection) => {
+        //the fields are which ones to diplay and in that order
+        const fieldsToDisplay = [];
+        const params = {};
+        for (const field of fields) {
+            fieldsToDisplay.push(field);
+        }
+        const sql = `
+        SELECT ${fieldsToDisplay.join(",")}
+        FROM Universe`;
+        const result = await connection.execute(sql, params, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
 }
 
+//this is to get a grouping of Villians by Standing, and it should show the Count of Number of Villians
 async function getVillainStandingCount() {
-    //TODO
+    return await withOracleDB(async (connection) =>{
+        const sql = `SELECT Standing, Count(*) AS Count
+                    FROM Villain
+                    GROUP BY Standing`;
+        const result = await connection.execute(sql, {}, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
 }
 
-async function getVillainSpeciesCount() {
-    //TODO
+async function getSuperheroSpeciesCount() {
+    return await withOracleDB(async (connection) =>{
+        const sql = `SELECT Species,
+                    COUNT(*) AS numHeroes
+                    FROM Superhero
+                    GROUP BY Species
+                    HAVING COUNT(*) > 1
+                    ORDER BY numHeroes DESC`
+                    ;
+        const result = await connection.execute(sql, {}, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
 }
 
 async function getSuperheroesWithSpaceStonePowers() {
-    //TODO
+    return await withOracleDB(async (connection) =>{
+        const sql = `
+        SELECT s.ActorName, s.Alias
+        FROM Superhero s
+        WHERE NOT EXISTS (
+            SELECT DISTINCT p.PowerID
+            FROM PowerFrom p
+            WHERE p.StoneName = 'Space Stone'
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM HeroHasPower h
+                  WHERE h.HeroActorName = s.ActorName
+                    AND h.HeroAlias = s.Alias
+                    AND h.PowerID = p.PowerID
+              )
+        )
+        `;
+        const result = await connection.execute(sql, {}, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
 }
 
 
@@ -203,6 +392,6 @@ module.exports = {
     searchBody,
     universeProjection,
     getVillainStandingCount,
-    getVillainSpeciesCount,
+    getSuperheroSpeciesCount,
     getSuperheroesWithSpaceStonePowers,
 };
