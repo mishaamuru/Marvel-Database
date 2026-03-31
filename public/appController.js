@@ -252,7 +252,7 @@ router.get("/villains", async (req, res) => {
 
 //This is to be able to view teams
 router.get("/teams", async (req, res) => {
-    const getPowers = await appService.getTeams();
+    const getTeams = await appService.getTeams();
     res.status(200).json({data: getTeams});
 })
 

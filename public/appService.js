@@ -239,6 +239,45 @@ async function getPowers() {
     });
 }
 
+//this will retieve all tables for superhero
+async function getSuperheros() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Superhero`;
+        const result = await connection.execute(sql);
+        return result;
+    }).catch(() => {
+        return [];
+    });
+}
+
+//this will retieve all tables for teams
+async function getTeams() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Team`;
+        const result = await connection.execute(sql);
+        return result;
+    }).catch(() => {
+        return [];
+    });
+}
+
+//this will retieve all tables for villains
+async function getTeams() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Villain`;
+        const result = await connection.execute(sql);
+        return result;
+    }).catch(() => {
+        return [];
+    });
+}
+
 //this will delete the tuples with this powerID
 async function deletePower(powerID) {
     return await withOracleDB(async (connection) => {
@@ -435,6 +474,9 @@ module.exports = {
     insertHeroHasPower,
     updatePower,
     getPowers,
+    getSuperheros,
+    getVillains,
+    getTeams,
     deletePower,
     searchBody,
     universeProjection,
