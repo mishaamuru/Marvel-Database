@@ -73,3 +73,4 @@ WHERE (Standing = :standing1 AND Species = :species1)
    OR (PublicIdentity = :publicIdentity1)
 ORDER BY Alias;
 
+

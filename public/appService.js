@@ -399,6 +399,29 @@ async function getSuperheroesAndPowersBySpecies(species) {
     });
 }
 
+async function getTopSpecies() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT s.Species,
+                   COUNT(*) AS HeroCount
+            FROM Superhero s
+            GROUP BY s.Species
+            HAVING COUNT(*) >= ALL (
+                SELECT COUNT(*)
+                FROM Superhero s2
+                GROUP BY s2.Species
+            )
+        `;
+
+        const result = await connection.execute(sql, {}, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
 
 module.exports = {
     testOracleConnection,
@@ -419,4 +442,5 @@ module.exports = {
     getSuperheroSpeciesCount,
     getSuperheroesWithSpaceStonePowers,
     getSuperheroesAndPowersBySpecies,
+    getTopSpecies,
 };
