@@ -215,24 +215,25 @@ app.listen(PORT, () => {
 
 
 //join query 
-async function runJoinQuery(db, species) {
+//this will return superheros and their powers for the given species 
+router.post("/superheroes/join-species", async (req, res) => {
+    const { species } = req.body;
+
     if (!species || species.trim() === "") {
-        throw new Error("Species is required.");
+        res.status(422).json({ error: "Species is required." });
+        return;
     }
-    const sql = `
-        SELECT s.ActorName,
-               s.Alias,
-               s.CharacterName,
-               h.PowerID
-        FROM Superhero s
-        JOIN HeroHasPower h
-          ON s.ActorName = h.HeroActorName
-         AND s.Alias = h.HeroAlias
-        WHERE s.Species = :species
-        ORDER BY s.Alias, h.PowerID
-    `;
-    return await db.execute(sql, { species: species.trim() });
-}
+
+    try {
+        const result = await appService.getSuperheroesAndPowersBySpecies(species);
+        res.status(200).json({ data: result });
+        return;
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+        return;
+    }
+});
 
 //nested aggregation with group by
 

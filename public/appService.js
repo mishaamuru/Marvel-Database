@@ -372,6 +372,33 @@ async function getSuperheroesWithSpaceStonePowers() {
     });
 }
 
+async function getSuperheroesAndPowersBySpecies(species) {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT s.ActorName,
+                   s.Alias,
+                   s.CharacterName,
+                   h.PowerID
+            FROM Superhero s
+            JOIN HeroHasPower h
+              ON s.ActorName = h.HeroActorName
+             AND s.Alias = h.HeroAlias
+            WHERE s.Species = :species
+            ORDER BY s.Alias, h.PowerID
+        `;
+
+        const result = await connection.execute(
+            sql,
+            { species: species.trim() },
+            { outFormat: oracledb.OUT_FORMAT_OBJECT }
+        );
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
 
 module.exports = {
     testOracleConnection,
@@ -391,4 +418,5 @@ module.exports = {
     getVillainStandingCount,
     getSuperheroSpeciesCount,
     getSuperheroesWithSpaceStonePowers,
+    getSuperheroesAndPowersBySpecies,
 };
