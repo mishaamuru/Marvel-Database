@@ -203,8 +203,48 @@ module.exports = router;
 //--------------------------------------------------------
 //                  ROJIN'S IMPLEMENTATION
 //--------------------------------------------------------
+
+
 //join query 
-//TODO
+async function runJoinQuery(db, species) {
+    if (!species || species.trim() === "") {
+        throw new Error("Species is required.");
+    }
+    const sql = `
+        SELECT s.ActorName,
+               s.Alias,
+               s.CharacterName,
+               h.PowerID
+        FROM Superhero s
+        JOIN HeroHasPower h
+          ON s.ActorName = h.HeroActorName
+         AND s.Alias = h.HeroAlias
+        WHERE s.Species = :species
+        ORDER BY s.Alias, h.PowerID
+    `;
+    return await db.execute(sql, { species: species.trim() });
+}
 
 //nested aggregation with group by
-//TODO
+
+async function getTopSpecies(connection) {
+    const query = `
+      SELECT s.Species,
+             COUNT(*) AS HeroCount
+      FROM Superhero s
+      GROUP BY s.Species
+      HAVING COUNT(*) >= ALL (
+          SELECT COUNT(*)
+          FROM Superhero s2
+          GROUP BY s2.Species
+      )
+    `;
+    try {
+      const result = await connection.execute(query);
+      return result.rows;
+    } catch (err) {
+      console.error("Error executing query:", err);
+      throw err;
+    }
+  }
+  
