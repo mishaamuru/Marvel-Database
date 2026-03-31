@@ -28,15 +28,7 @@
                 <label>Select Table:</label>
                 <select name="viewtable" id="viewtable">
                     <option value="">Select Table</option>
-                    <option value="superhero">Superhero</option>
-                    <option value="villain">Villain</option>
-                    <option value="movie">Movie</option>
-                    <option value="team">Team</option>
-                    <option value="power">Power</option>
-                    <option value="location">Location</option>
-                    <option value="organization">Organization</option>
-                    <option value="universe">Universe</option>
-                    <option value="infinitystone">Infinity Stone</option>
+                    <option value="universes">Universes</option>
                 </select>
                 <input type="submit" value="Load" id="Load">
             </div>
@@ -45,9 +37,10 @@
                 <div id="checks" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Select Attribute(s):</span>
                     <ul name="attributes" id="attributes" class="attributes">
-                        <li><input type="checkbox" />A1</li>
-                        <li><input type="checkbox" />A2</li>
-                        <li><input type="checkbox" />A3</li>
+                        <li><input type="checkbox" />Earth Number</li>
+                        <li><input type="checkbox" />Name</li>
+                        <li><input type="checkbox" />Status</li>
+                        <li><input type="checkbox" />Timeline</li>
                     </ul>
                 </div>
             </div>
@@ -145,13 +138,13 @@
         <h2>Insert Data</h2>
         <form>
             <label for="heroActorName">Hero Actor Name:</label>
-            <input type="text" value="heroActorName" id="heroActorName" name="heroActorName"><br>
+            <input type="text" placeholder="Enter Actor Name" id="heroActorName" name="heroActorName"><br>
             <label for="heroAlias">Hero Alias:</label>
-            <input type="text" value="heroAlias" id="heroAlias" name="heroAlias"><br>
+            <input type="text" placeholder="Enter Alias" id="heroAlias" name="heroAlias"><br>
             <label for="powerid">PowerID:</label>
-            <input type="text" value="powerid" id="powerid" name="powerid"><br>
+            <input type="text" placeholder="Enter ID" id="powerid" name="powerid"><br>
             <label for="dateGained">Date Gained:</label>
-            <input type="text" value="dateGained" name="dateGained" id="dateGained"><br>
+            <input type="text" placeholder="Enter Date Gained of Power" name="dateGained" id="dateGained"><br>
             <input type="button" value="Insert" id="insert-button">
             <p id="insert-message"></p>
         </form>

@@ -1,20 +1,3 @@
-const express = require('express');
-const path = require('path');
-const app = express();
-
-const appController = require('./public/appController');
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use(express.static(path.join(__dirname, 'public_html')));
-
-app.use('/', appController);
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public_html', 'index.html'));
-});
-
 // Hides the tabs and only shows selected tab
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -203,6 +186,8 @@ document.querySelector("#delete-button").addEventListener("click", async functio
   }
 });
 
+//TODO
+// Join 
 
 // Advanced Query Tab
 document.querySelector("#groupby-button").addEventListener("click", async function () {
