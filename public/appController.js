@@ -203,8 +203,39 @@ module.exports = router;
 //--------------------------------------------------------
 //                  ROJIN'S IMPLEMENTATION
 //--------------------------------------------------------
-//join query 
-//TODO
 
-//nested aggregation with group by
-//TODO
+
+//join query 
+//this will return superheros and their powers for the given species 
+router.post("/superheroes/join-species", async (req, res) => {
+    const { species } = req.body;
+
+    if (!species || species.trim() === "") {
+        res.status(422).json({ error: "Species is required." });
+        return;
+    }
+
+    try {
+        const result = await appService.getSuperheroesAndPowersBySpecies(species);
+        res.status(200).json({ data: result });
+        return;
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+        return;
+    }
+});
+
+//nested aggregation with GROUP BY
+//this finds the species with the highest number of superheros by comparing each species count to all the others
+router.get("/superheroes/top-species", async (req, res) => {
+    try {
+        const result = await appService.getTopSpecies();
+        return res.status(200).json({ data: result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+  
