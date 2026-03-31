@@ -156,8 +156,6 @@ router.get("/universes", async (req, res) => {
 
 })
 
-//join query 
-//TODO
 
 //aggregation with GROUP BY
 //implemented on the Villian relation, grouping with Standing, and it will show the count of those dead/alive
@@ -186,8 +184,6 @@ router.get("/villains/species-count", async (req, res) => {
     }
 });
 
-//nested aggregation with group by
-//TODO
 
 //division query for the table HeroHasPower
 //this will find superheroes whose power comes from the Space Stone
@@ -213,3 +209,11 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+//--------------------------------------------------------
+//                  ROJIN'S IMPLEMENTATION
+//--------------------------------------------------------
+//join query 
+//TODO
+
+//nested aggregation with group by
+//TODO
