@@ -36,7 +36,7 @@ function openTab(evt, tabName) {
 }
 
 // default page when opened 
-document.getElementById("defaultOpen").click();
+document.getElementById("ViewData").click();
 
 // View data 
 // Checkmarks for the dropdown
