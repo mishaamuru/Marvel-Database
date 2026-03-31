@@ -13,60 +13,60 @@ INSERT INTO
     Superhero
 VALUES
     (
-        "Robert Downey Jr.",
-        "IronMan",
-        "Tony Stark",
-        "Dead",
-        "Human",
-        "Known"
+        'Robert Downey Jr.',
+        'IronMan',
+        'Tony Stark',
+        'Dead',
+        'Human',
+        'Known'
     );
 
 INSERT INTO
     Superhero
 VALUES
     (
-        "Chris Evans",
-        "CaptainAmerica",
-        "Steve Rogers",
-        "Retired",
-        "Human",
-        "Known"
+        'Chris Evans',
+        'CaptainAmerica',
+        'Steve Rogers',
+        'Retired',
+        'Human',
+        'Known'
     );
 
 INSERT INTO
     Superhero
 VALUES
     (
-        "Chris Hemsworth",
-        "Thor",
-        "Thor Odinson",
-        "Alive",
-        "Asgardian",
-        "Known"
+        'Chris Hemsworth',
+        'Thor',
+        'Thor Odinson',
+        'Alive',
+        'Asgardian',
+        'Known'
     );
 
 INSERT INTO
     Superhero
 VALUES
     (
-        "Mark Ruffalo",
-        "Hulk",
-        "Bruce Banner",
-        "Alive",
-        "Human",
-        "Known"
+        'Mark Ruffalo',
+        'Hulk',
+        'Bruce Banner',
+        'Alive',
+        'Human',
+        'Known'
     );
 
 INSERT INTO
     Superhero
 VALUES
     (
-        "Scarlett Johansson",
-        "BlackWidow",
-        "Natasha Romanoff",
-        "Dead",
-        "Human",
-        "Unknown"
+        'Scarlett Johansson',
+        'BlackWidow',
+        'Natasha Romanoff',
+        'Dead',
+        'Human',
+        'Unknown'
     );
 
 CREATE TABLE
@@ -85,65 +85,65 @@ INSERT INTO
     Villain
 VALUES
     (
-        "Tom Hiddleston",
-        "Loki",
-        "Loki Laufeyson",
-        "Alive",
-        "Frost Giant",
-        "Known",
-        "Power"
+        'Tom Hiddleston',
+        'Loki',
+        'Loki Laufeyson',
+        'Alive',
+        'Frost Giant',
+        'Known',
+        'Power'
     );
 
 INSERT INTO
     Villain
 VALUES
     (
-        "Josh Brolin",
-        "Thanos",
-        "Thanos",
-        "Dead",
-        "Titan",
-        "Known",
-        "Overpopulation"
+        'Josh Brolin',
+        'Thanos',
+        'Thanos',
+        'Dead',
+        'Titan',
+        'Known',
+        'Overpopulation'
     );
 
 INSERT INTO
     Villain
 VALUES
     (
-        "James Spader",
-        "Ultron",
-        "Ultron",
-        "Destroyed",
-        "AI",
-        "Known",
-        "Evolution"
+        'James Spader',
+        'Ultron',
+        'Ultron',
+        'Destroyed',
+        'AI',
+        'Known',
+        'Evolution'
     );
 
 INSERT INTO
     Villain
 VALUES
     (
-        "Michael B. Jordan",
-        "Killmonger",
-        "Erik Stevens",
-        "Dead",
-        "Human",
-        "Known",
-        "Revenge"
+        'Michael B. Jordan',
+        'Killmonger',
+        'Erik Stevens',
+        'Dead',
+        'Human',
+        'Known',
+        'Revenge'
     );
 
 INSERT INTO
     Villain
 VALUES
     (
-        "Cate Blanchett",
-        "Hela",
-        "Hela",
-        "Dead",
-        "Asgardian",
-        "Known",
-        "Conquest"
+        'Cate Blanchett',
+        'Hela',
+        'Hela',
+        'Dead',
+        'Asgardian',
+        'Known',
+        'Conquest'
     );
 
 CREATE TABLE
@@ -158,27 +158,27 @@ CREATE TABLE
 INSERT INTO
     Universe
 VALUES
-    (616, "Earth-616", "Active", "Main");
+    (616, 'Earth-616', 'Active', 'Main');
 
 INSERT INTO
     Universe
 VALUES
-    (199999, "Earth-199999", "Active", "MCU");
+    (199999, 'Earth-199999', 'Active', 'MCU');
 
 INSERT INTO
     Universe
 VALUES
-    (838, "Earth-838", "Destroyed", "Alternate");
+    (838, 'Earth-838', 'Destroyed', 'Alternate');
 
 INSERT INTO
     Universe
 VALUES
-    (2149, "Earth-2149", "Destroyed", "Zombie");
+    (2149, 'Earth-2149', 'Destroyed', 'Zombie');
 
 INSERT INTO
     Universe
 VALUES
-    (1610, "Earth-1610", "Destroyed", "Ultimate");
+    (1610, 'Earth-1610', 'Destroyed', 'Ultimate');
 
 CREATE TABLE
     Team (
@@ -194,49 +194,49 @@ INSERT INTO
     Team
 VALUES
     (
-        "Avengers",
+        'Avengers',
         6,
-        "Active",
-        "Nick Fury",
-        "Captain America"
+        'Active',
+        'Nick Fury',
+        'Captain America'
     );
 
 INSERT INTO
     Team
 VALUES
     (
-        "Guardians of the Galaxy",
+        'Guardians of the Galaxy',
         5,
-        "Active",
-        "Yondu",
-        "Star-Lord"
+        'Active',
+        'Yondu',
+        'Star-Lord'
     );
 
 INSERT INTO
     Team
 VALUES
     (
-        "Young Avengers",
+        'Young Avengers',
         5,
-        "Active",
-        "Hawkeye",
-        "Kate Bishop"
+        'Active',
+        'Hawkeye',
+        'Kate Bishop'
     );
 
 INSERT INTO
     Team
 VALUES
-    ("Defenders", 4, "Inactive", "Stick", "Daredevil");
+    ('Defenders', 4, 'Inactive', 'Stick', 'Daredevil');
 
 INSERT INTO
     Team
 VALUES
     (
-        "Fantastic Four",
+        'Fantastic Four',
         4,
-        "Active",
-        "Reed Richards",
-        "Mr. Fantastic"
+        'Active',
+        'Reed Richards',
+        'Mr. Fantastic'
     );
 
 CREATE TABLE
@@ -253,55 +253,55 @@ INSERT INTO
     Organization
 VALUES
     (
-        "S.H.I.E.L.D.",
-        "Nick Fury",
-        "Active",
-        "Intelligence",
-        "Howard Stark"
+        'S.H.I.E.L.D.',
+        'Nick Fury',
+        'Active',
+        'Intelligence',
+        'Howard Stark'
     );
 
 INSERT INTO
     Organization
 VALUES
     (
-        "HYDRA",
-        "Red Skull",
-        "Inactive",
-        "Terrorist",
-        "Johann Schmidt"
+        'HYDRA',
+        'Red Skull',
+        'Inactive',
+        'Terrorist',
+        'Johann Schmidt'
     );
 
 INSERT INTO
     Organization
 VALUES
     (
-        "Stark Industries",
-        "Tony Stark",
-        "Active",
-        "Corporation",
-        "Howard Stark"
+        'Stark Industries',
+        'Tony Stark',
+        'Active',
+        'Corporation',
+        'Howard Stark'
     );
 
 INSERT INTO
     Organization
 VALUES
     (
-        "Wakandan Royal Guard",
-        "Okoye",
-        "Active",
-        "Military",
-        "T'Chaka"
+        'Wakandan Royal Guard',
+        'Okoye',
+        'Active',
+        'Military',
+        'TChaka'
     );
 
 INSERT INTO
     Organization
 VALUES
     (
-        "Ten Rings",
-        "Xu Wenwu",
-        "Active",
-        "Criminal",
-        "Xu Wenwu"
+        'Ten Rings',
+        'Xu Wenwu',
+        'Active',
+        'Criminal',
+        'Xu Wenwu'
     );
 
 CREATE TABLE
@@ -316,27 +316,27 @@ CREATE TABLE
 INSERT INTO
     Location
 VALUES
-    ("Wakanda", "Human", "Earth", "6000000");
+    ('Wakanda', 'Human', 'Earth', '6000000');
 
 INSERT INTO
     Location
 VALUES
-    ("Asgard", "Asgardian", "Asgard", "Unknown");
+    ('Asgard', 'Asgardian', 'Asgard', 'Unknown');
 
 INSERT INTO
     Location
 VALUES
-    ("Knowhere", "Various", "Cosmic", "Unknown");
+    ('Knowhere', 'Various', 'Cosmic', 'Unknown');
 
 INSERT INTO
     Location
 VALUES
-    ("Titan", "Titanian", "Titan", "Extinct");
+    ('Titan', 'Titanian', 'Titan', 'Extinct');
 
 INSERT INTO
     Location
 VALUES
-    ("Sokovia", "Human", "Earth", "Unknown");
+    ('Sokovia', 'Human', 'Earth', 'Unknown');
 
 CREATE TABLE
     StoneColour (
@@ -348,27 +348,27 @@ CREATE TABLE
 INSERT INTO
     StoneColour
 VALUES
-    ("Space Stone", "Blue");
+    ('Space Stone', 'Blue');
 
 INSERT INTO
     StoneColour
 VALUES
-    ("Mind Stone", "Yellow");
+    ('Mind Stone', 'Yellow');
 
 INSERT INTO
     StoneColour
 VALUES
-    ("Reality Stone", "Red");
+    ('Reality Stone', 'Red');
 
 INSERT INTO
     StoneColour
 VALUES
-    ("Power Stone", "Purple");
+    ('Power Stone', 'Purple');
 
 INSERT INTO
     StoneColour
 VALUES
-    ("Time Stone", "Green");
+    ('Time Stone', 'Green');
 
 CREATE TABLE
     MovieOrderPhase (
@@ -416,31 +416,31 @@ CREATE TABLE
 INSERT INTO
     InfinityStone
 VALUES
-    (199999, "Space Stone", "Destroyed", "Thanos");
+    (199999, 'Space Stone', 'Destroyed', 'Thanos');
 
 INSERT INTO
     InfinityStone
 VALUES
-    (199999, "Mind Stone", "Destroyed", "Vision");
+    (199999, 'Mind Stone', 'Destroyed', 'Vision');
 
 INSERT INTO
     InfinityStone
 VALUES
-    (199999, "Reality Stone", "Destroyed", "Collector");
+    (199999, 'Reality Stone', 'Destroyed', 'Collector');
 
 INSERT INTO
     InfinityStone
 VALUES
-    (199999, "Power Stone", "Destroyed", "Nova Corps");
+    (199999, 'Power Stone', 'Destroyed', 'Nova Corps');
 
 INSERT INTO
     InfinityStone
 VALUES
     (
         199999,
-        "Time Stone",
-        "Destroyed",
-        "Doctor Strange"
+        'Time Stone',
+        'Destroyed',
+        'Doctor Strange'
     );
 
 CREATE TABLE
@@ -456,27 +456,27 @@ CREATE TABLE
 INSERT INTO
     Movie
 VALUES
-    ("Iron Man", 2008, 1, 94);
+    ('Iron Man', 2008, 1, 94);
 
 INSERT INTO
     Movie
 VALUES
-    ("The Incredible Hulk", 2008, 2, 67);
+    ('The Incredible Hulk', 2008, 2, 67);
 
 INSERT INTO
     Movie
 VALUES
-    ("Thor", 2011, 3, 77);
+    ('Thor', 2011, 3, 77);
 
 INSERT INTO
     Movie
 VALUES
-    ("Captain America: The First Avenger", 2011, 4, 80);
+    ('Captain America: The First Avenger', 2011, 4, 80);
 
 INSERT INTO
     Movie
 VALUES
-    ("The Avengers", 2012, 5, 91);
+    ('The Avengers', 2012, 5, 91);
 
 CREATE TABLE
     Avenger (
@@ -491,27 +491,27 @@ CREATE TABLE
 INSERT INTO
     Avenger
 VALUES
-    ("Robert Downey Jr.", "IronMan", 5, 2012);
+    ('Robert Downey Jr.', 'IronMan', 5, 2012);
 
 INSERT INTO
     Avenger
 VALUES
-    ("Chris Evans", "CaptainAmerica", 5, 2012);
+    ('Chris Evans', 'CaptainAmerica', 5, 2012);
 
 INSERT INTO
     Avenger
 VALUES
-    ("Chris Hemsworth", "Thor", 5, 2012);
+    ('Chris Hemsworth', 'Thor', 5, 2012);
 
 INSERT INTO
     Avenger
 VALUES
-    ("Mark Ruffalo", "Hulk", 4, 2012);
+    ('Mark Ruffalo', 'Hulk', 4, 2012);
 
 INSERT INTO
     Avenger
 VALUES
-    ("Scarlett Johansson", "BlackWidow", 4, 2012);
+    ('Scarlett Johansson', 'BlackWidow', 4, 2012);
 
 CREATE TABLE
     WeaponSource (
@@ -523,27 +523,27 @@ CREATE TABLE
 INSERT INTO
     WeaponSource
 VALUES
-    ("Mjolnir", "Asgard");
+    ('Mjolnir', 'Asgard');
 
 INSERT INTO
     WeaponSource
 VALUES
-    ("Shield", "Vibranium");
+    ('Shield', 'Vibranium');
 
 INSERT INTO
     WeaponSource
 VALUES
-    ("Arc Reactor", "Stark Tech");
+    ('Arc Reactor', 'Stark Tech');
 
 INSERT INTO
     WeaponSource
 VALUES
-    ("Widow Bite", "S.H.I.E.L.D.");
+    ('Widow Bite', 'S.H.I.E.L.D.');
 
 INSERT INTO
     WeaponSource
 VALUES
-    ("Stormbreaker", "Nidavellir");
+    ('Stormbreaker', 'Nidavellir');
 
 CREATE TABLE
     Power(
@@ -558,27 +558,27 @@ CREATE TABLE
 INSERT INTO
     Power
 VALUES
-    (1, "Super Strength", "Mjolnir", "Godly");
+    (1, 'Super Strength', 'Mjolnir', 'Godly');
 
 INSERT INTO
     Power
 VALUES
-    (2, "Energy Blasts", "Arc Reactor", "Tech");
+    (2, 'Energy Blasts', 'Arc Reactor', 'Tech');
 
 INSERT INTO
     Power
 VALUES
-    (3, "Hand to Hand Combat", "Widow Bite", "Combat");
+    (3, 'Hand to Hand Combat', 'Widow Bite', 'Combat');
 
 INSERT INTO
     Power
 VALUES
-    (4, "Shield Mastery", "Shield", "Defense");
+    (4, 'Shield Mastery', 'Shield', 'Defense');
 
 INSERT INTO
     Power
 VALUES
-    (5, "Lightning Control", "Stormbreaker", "Godly");
+    (5, 'Lightning Control', 'Stormbreaker', 'Godly');
 
 CREATE TABLE
     Fights (
@@ -600,45 +600,45 @@ INSERT INTO
     Fights
 VALUES
     (
-        "Robert Downey Jr.",
-        "IronMan",
-        "Josh Brolin",
-        "Thanos"
+        'Robert Downey Jr.',
+        'IronMan',
+        'Josh Brolin',
+        'Thanos'
     );
 
 INSERT INTO
     Fights
 VALUES
     (
-        "Chris Evans",
-        "CaptainAmerica",
-        "Tom Hiddleston",
-        "Loki"
+        'Chris Evans',
+        'CaptainAmerica',
+        'Tom Hiddleston',
+        'Loki'
     );
 
 INSERT INTO
     Fights
 VALUES
     (
-        "Chris Hemsworth",
-        "Thor",
-        "Cate Blanchett",
-        "Hela"
+        'Chris Hemsworth',
+        'Thor',
+        'Cate Blanchett',
+        'Hela'
     );
 
 INSERT INTO
     Fights
 VALUES
-    ("Mark Ruffalo", "Hulk", "James Spader", "Ultron");
+    ('Mark Ruffalo', 'Hulk', 'James Spader', 'Ultron');
 
 INSERT INTO
     Fights
 VALUES
     (
-        "Scarlett Johansson",
-        "BlackWidow",
-        "Michael B. Jordan",
-        "Killmonger"
+        'Scarlett Johansson',
+        'BlackWidow',
+        'Michael B. Jordan',
+        'Killmonger'
     );
 
 CREATE TABLE
@@ -655,32 +655,32 @@ CREATE TABLE
 INSERT INTO
     VillainHasPower
 VALUES
-    (1, "Tom Hiddleston", "Loki", "2011-05-06");
+    (1, 'Tom Hiddleston', 'Loki', '2011-05-06');
 
 INSERT INTO
     VillainHasPower
 VALUES
-    (2, "Josh Brolin", "Thanos", "2018-04-27");
+    (2, 'Josh Brolin', 'Thanos', '2018-04-27');
 
 INSERT INTO
     VillainHasPower
 VALUES
     (
         3,
-        "Michael B. Jordan",
-        "Killmonger",
-        "2018-02-16"
+        'Michael B. Jordan',
+        'Killmonger',
+        '2018-02-16'
     );
 
 INSERT INTO
     VillainHasPower
 VALUES
-    (4, "James Spader", "Ultron", "2015-05-01");
+    (4, 'James Spader', 'Ultron', '2015-05-01');
 
 INSERT INTO
     VillainHasPower
 VALUES
-    (5, "Cate Blanchett", "Hela", "2017-11-03");
+    (5, 'Cate Blanchett', 'Hela', '2017-11-03');
 
 CREATE TABLE
     HeroHasPower (
@@ -696,32 +696,32 @@ CREATE TABLE
 INSERT INTO
     HeroHasPower
 VALUES
-    ("Chris Hemsworth", "Thor", 1, "2011-04-21");
+    ('Chris Hemsworth', 'Thor', 1, DATE '2011-04-21');
 
 INSERT INTO
     HeroHasPower
 VALUES
-    ("Robert Downey Jr.", "IronMan", 2, "2008-05-02");
+    ('Robert Downey Jr.', 'IronMan', 2, '2008-05-02');
 
 INSERT INTO
     HeroHasPower
 VALUES
     (
-        "Scarlett Johansson",
-        "BlackWidow",
+        'Scarlett Johansson',
+        'BlackWidow',
         3,
-        "2012-05-04"
+        '2012-05-04'
     );
 
 INSERT INTO
     HeroHasPower
 VALUES
-    ("Chris Evans", "CaptainAmerica", 4, "2011-07-22");
+    ('Chris Evans', 'CaptainAmerica', 4, '2011-07-22');
 
 INSERT INTO
     HeroHasPower
 VALUES
-    ("Chris Hemsworth", "Thor", 5, "2018-04-27");
+    ('Chris Hemsworth', 'Thor', 5, '2018-04-27');
 
 CREATE TABLE
     MemberOfTeam (
@@ -736,27 +736,27 @@ CREATE TABLE
 INSERT INTO
     MemberOfTeam
 VALUES
-    ("Robert Downey Jr.", "IronMan", "Avengers");
+    ('Robert Downey Jr.', 'IronMan', 'Avengers');
 
 INSERT INTO
     MemberOfTeam
 VALUES
-    ("Chris Evans", "CaptainAmerica", "Avengers");
+    ('Chris Evans', 'CaptainAmerica', 'Avengers');
 
 INSERT INTO
     MemberOfTeam
 VALUES
-    ("Chris Hemsworth", "Thor", "Avengers");
+    ('Chris Hemsworth', 'Thor', 'Avengers');
 
 INSERT INTO
     MemberOfTeam
 VALUES
-    ("Mark Ruffalo", "Hulk", "Avengers");
+    ('Mark Ruffalo', 'Hulk', 'Avengers');
 
 INSERT INTO
     MemberOfTeam
 VALUES
-    ("Scarlett Johansson", "BlackWidow", "Avengers");
+    ('Scarlett Johansson', 'BlackWidow', 'Avengers');
 
 CREATE TABLE
     AppearsIn (
@@ -783,11 +783,11 @@ INSERT INTO
     AppearsIn
 VALUES
     (
-        "Robert Downey Jr.",
-        "IronMan",
-        "Tom Hiddleston",
-        "Loki",
-        "The Avengers",
+        'Robert Downey Jr.',
+        'IronMan',
+        'Tom Hiddleston',
+        'Loki',
+        'The Avengers',
         2012
     );
 
@@ -795,11 +795,11 @@ INSERT INTO
     AppearsIn
 VALUES
     (
-        "Chris Evans",
-        "CaptainAmerica",
-        "Tom Hiddleston",
-        "Loki",
-        "The Avengers",
+        'Chris Evans',
+        'CaptainAmerica',
+        'Tom Hiddleston',
+        'Loki',
+        'The Avengers',
         2012
     );
 
@@ -807,11 +807,11 @@ INSERT INTO
     AppearsIn
 VALUES
     (
-        "Chris Hemsworth",
-        "Thor",
-        "Tom Hiddleston",
-        "Loki",
-        "Thor",
+        'Chris Hemsworth',
+        'Thor',
+        'Tom Hiddleston',
+        'Loki',
+        'Thor',
         2011
     );
 
@@ -819,11 +819,11 @@ INSERT INTO
     AppearsIn
 VALUES
     (
-        "Mark Ruffalo",
-        "Hulk",
-        "Josh Brolin",
-        "Thanos",
-        "The Avengers",
+        'Mark Ruffalo',
+        'Hulk',
+        'Josh Brolin',
+        'Thanos',
+        'The Avengers',
         2012
     );
 
@@ -831,11 +831,11 @@ INSERT INTO
     AppearsIn
 VALUES
     (
-        "Scarlett Johansson",
-        "BlackWidow",
-        "James Spader",
-        "Ultron",
-        "The Avengers",
+        'Scarlett Johansson',
+        'BlackWidow',
+        'James Spader',
+        'Ultron',
+        'The Avengers',
         2012
     );
 
@@ -863,9 +863,9 @@ CREATE TABLE
 VALUES
     (
         199999,
-        "Space Stone",
-        "Avengers",
-        "The Avengers",
+        'Space Stone',
+        'Avengers',
+        'The Avengers',
         2012
     );
 
@@ -874,9 +874,9 @@ INSERT INTO
 VALUES
     (
         199999,
-        "Mind Stone",
-        "Avengers",
-        "The Avengers",
+        'Mind Stone',
+        'Avengers',
+        'The Avengers',
         2012
     );
 
@@ -885,9 +885,9 @@ INSERT INTO
 VALUES
     (
         199999,
-        "Reality Stone",
-        "Guardians of the Galaxy",
-        "Thor",
+        'Reality Stone',
+        'Guardians of the Galaxy',
+        'Thor',
         2011
     );
 
@@ -896,9 +896,9 @@ INSERT INTO
 VALUES
     (
         199999,
-        "Power Stone",
-        "Guardians of the Galaxy",
-        "The Avengers",
+        'Power Stone',
+        'Guardians of the Galaxy',
+        'The Avengers',
         2012
     );
 
@@ -907,9 +907,9 @@ INSERT INTO
 VALUES
     (
         199999,
-        "Time Stone",
-        "Avengers",
-        "Captain America: The First Avenger",
+        'Time Stone',
+        'Avengers',
+        'Captain America: The First Avenger',
         2011
     );
 
@@ -927,7 +927,7 @@ INSERT INTO
     ExistsIn
 VALUES
     (
-        "Avengers",
+        'Avengers',
         199999
     );
 
@@ -935,7 +935,7 @@ INSERT INTO
     ExistsIn
 VALUES
     (
-        "Guardians of the Galaxy",
+        'Guardians of the Galaxy',
         199999
     );
 
@@ -943,7 +943,7 @@ INSERT INTO
     ExistsIn
 VALUES
     (
-        "Fantastic Four",
+        'Fantastic Four',
         828
     );
 
@@ -951,7 +951,7 @@ INSERT INTO
     ExistsIn
 VALUES
     (
-        "Agents of Wakanda",
+        'Agents of Wakanda',
         616
     );
 
@@ -959,7 +959,7 @@ INSERT INTO
     ExistsIn
 VALUES
     (
-        "Black Order",
+        'Black Order',
         199999
     );
 
@@ -977,31 +977,31 @@ CREATE TABLE
 INSERT INTO
     SetIn
 VALUES
-    (199999, "Iron Man", 2008);
+    (199999, 'Iron Man', 2008);
 
 INSERT INTO
     SetIn
 VALUES
-    (199999, "The Incredible Hulk", 2008);
+    (199999, 'The Incredible Hulk', 2008);
 
 INSERT INTO
     SetIn
 VALUES
-    (199999, "Thor", 2011);
+    (199999, 'Thor', 2011);
 
 INSERT INTO
     SetIn
 VALUES
     (
         199999,
-        "Captain America: The First Avenger",
+        'Captain America: The First Avenger',
         2011
     );
 
 INSERT INTO
     SetIn
 VALUES
-    (199999, "The Avengers", 2012);
+    (199999, 'The Avengers', 2012);
 
 CREATE TABLE
     LocatedIn (
@@ -1015,27 +1015,27 @@ CREATE TABLE
 INSERT INTO
     LocatedIn
 VALUES
-    ("Avengers", "Wakanda");
+    ('Avengers', 'Wakanda');
 
 INSERT INTO
     LocatedIn
 VALUES
-    ("Guardians of the Galaxy", "Knowhere");
+    ('Guardians of the Galaxy', 'Knowhere');
 
 INSERT INTO
     LocatedIn
 VALUES
-    ("Fantastic Four", "Wakanda");
+    ('Fantastic Four', 'Wakanda');
 
 INSERT INTO
     LocatedIn
 VALUES
-    ("Defenders", "Sokovia");
+    ('Defenders', 'Sokovia');
 
 INSERT INTO
     LocatedIn
 VALUES
-    ("Young Avengers", "Wakanda");
+    ('Young Avengers', 'Wakanda');
 
 CREATE TABLE
     MemberOfOrganization (
@@ -1060,55 +1060,55 @@ INSERT INTO
     MemberOfOrganization
 VALUES
     (
-        "Robert Downey Jr.",
-        "IronMan",
-        "Josh Brolin",
-        "Thanos",
-        "Stark Industries"
+        'Robert Downey Jr.',
+        'IronMan',
+        'Josh Brolin',
+        'Thanos',
+        'Stark Industries'
     );
 
 INSERT INTO
     MemberOfOrganization
 VALUES
     (
-        "Chris Evans",
-        "CaptainAmerica",
-        "Tom Hiddleston",
-        "Loki",
-        "S.H.I.E.L.D."
+        'Chris Evans',
+        'CaptainAmerica',
+        'Tom Hiddleston',
+        'Loki',
+        'S.H.I.E.L.D.'
     );
 
 INSERT INTO
     MemberOfOrganization
 VALUES
     (
-        "Chris Hemsworth",
-        "Thor",
-        "Cate Blanchett",
-        "Hela",
-        "Wakandan Royal Guard"
+        'Chris Hemsworth',
+        'Thor',
+        'Cate Blanchett',
+        'Hela',
+        'Wakandan Royal Guard'
     );
 
 INSERT INTO
     MemberOfOrganization
 VALUES
     (
-        "Mark Ruffalo",
-        "Hulk",
-        "James Spader",
-        "Ultron",
-        "Stark Industries"
+        'Mark Ruffalo',
+        'Hulk',
+        'James Spader',
+        'Ultron',
+        'Stark Industries'
     );
 
 INSERT INTO
     MemberOfOrganization
 VALUES
     (
-        "Scarlett Johansson",
-        "BlackWidow",
-        "Michael B. Jordan",
-        "Killmonger",
-        "S.H.I.E.L.D."
+        'Scarlett Johansson',
+        'BlackWidow',
+        'Michael B. Jordan',
+        'Killmonger',
+        'S.H.I.E.L.D.'
     );
 
 CREATE TABLE
@@ -1124,31 +1124,31 @@ CREATE TABLE
 INSERT INTO
     TakesPlace
 VALUES
-    ("Iron Man", 2008, "Wakanda");
+    ('Iron Man', 2008, 'Wakanda');
 
 INSERT INTO
     TakesPlace
 VALUES
-    ("The Incredible Hulk", 2008, "Sokovia");
+    ('The Incredible Hulk', 2008, 'Sokovia');
 
 INSERT INTO
     TakesPlace
 VALUES
-    ("Thor", 2011, "Asgard");
+    ('Thor', 2011, 'Asgard');
 
 INSERT INTO
     TakesPlace
 VALUES
     (
-        "Captain America: The First Avenger",
+        'Captain America: The First Avenger',
         2011,
-        "Wakanda"
+        'Wakanda'
     );
 
 INSERT INTO
     TakesPlace
 VALUES
-    ("The Avengers", 2012, "Knowhere");
+    ('The Avengers', 2012, 'Knowhere');
 
 CREATE TABLE
     BasedIn (
@@ -1162,27 +1162,27 @@ CREATE TABLE
 INSERT INTO
     BasedIn
 VALUES
-    ("Wakanda", "Wakandan Royal Guard");
+    ('Wakanda', 'Wakandan Royal Guard');
 
 INSERT INTO
     BasedIn
 VALUES
-    ("Knowhere", "Ten Rings");
+    ('Knowhere', 'Ten Rings');
 
 INSERT INTO
     BasedIn
 VALUES
-    ("Sokovia", "HYDRA");
+    ('Sokovia', 'HYDRA');
 
 INSERT INTO
     BasedIn
 VALUES
-    ("Asgard", "S.H.I.E.L.D.");
+    ('Asgard', 'S.H.I.E.L.D.');
 
 INSERT INTO
     BasedIn
 VALUES
-    ("Wakanda", "Stark Industries");
+    ('Wakanda', 'Stark Industries');
 
 CREATE TABLE
     PowerFrom (
@@ -1197,24 +1197,25 @@ CREATE TABLE
 INSERT INTO
     PowerFrom
 VALUES
-    (1, "Space Stone", 199999);
+    (1, 'Space Stone', 199999);
 
 INSERT INTO
     PowerFrom
 VALUES
-    (2, "Mind Stone", 199999);
+    (2, 'Mind Stone', 199999);
 
 INSERT INTO
     PowerFrom
 VALUES
-    (3, "Reality Stone", 199999);
+    (3, 'Reality Stone', 199999);
 
 INSERT INTO
     PowerFrom
 VALUES
-    (4, "Power Stone", 199999);
+    (4, 'Power Stone', 199999);
 
 INSERT INTO
     PowerFrom
 VALUES
-    (5, "Time Stone", 199999);
+    (5, 'Time Stone', 199999);
+    
