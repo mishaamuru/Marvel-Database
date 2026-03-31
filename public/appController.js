@@ -226,26 +226,16 @@ router.post("/superheroes/join-species", async (req, res) => {
     }
 });
 
-//nested aggregation with group by
-
-async function getTopSpecies(connection) {
-    const query = `
-      SELECT s.Species,
-             COUNT(*) AS HeroCount
-      FROM Superhero s
-      GROUP BY s.Species
-      HAVING COUNT(*) >= ALL (
-          SELECT COUNT(*)
-          FROM Superhero s2
-          GROUP BY s2.Species
-      )
-    `;
+//nested aggregation with GROUP BY
+//this finds the species with the highest number of superheros by comparing each species count to all the others
+router.get("/superheroes/top-species", async (req, res) => {
     try {
-      const result = await connection.execute(query);
-      return result.rows;
-    } catch (err) {
-      console.error("Error executing query:", err);
-      throw err;
+        const result = await appService.getTopSpecies();
+        return res.status(200).json({ data: result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
     }
-  }
+});
+
   
