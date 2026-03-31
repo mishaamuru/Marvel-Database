@@ -32,6 +32,41 @@ checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
     checkList.classList.add('visible');
 }
 
+const checkedmarks = []
+
+document.querySelectorAll("#attributes input[type='checkbox']").forEach(box => {
+  box.addEventListener("change", function () {
+    if (this.checked) {
+      checkedmarks.push(this.value);
+    } else {
+      checkedmarks.splice(checkedmarks.indexOf(this.value), 1);
+    }
+  });
+});
+
+document.querySelector("#Load").addEventListener("click", async function () {
+  if (checkedmarks.length === 0) {
+    console.log("Array is empty, no attributes selected");
+  } else {
+    const response = await fetch("/universes?fields=" + checkedmarks.join(","), {
+      method: "GET"
+    });
+
+    const result = await response.json();
+    const tableHead = document.querySelector("#view-thead");
+    const tableBody = document.querySelector("#view-tbody");
+
+    if (result.data.length === 0) {
+      console.log("No data returned");
+      tableHead.innerHTML = "";
+      tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+    } else {
+      tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+      tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+    }
+  }
+});
+
 function newCondition() {
   return `<select name="search-attribute" class="search-attribute">
                             <option value="">Select Attribute</option>

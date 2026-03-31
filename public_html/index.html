@@ -30,17 +30,17 @@
                     <option value="">Select Table</option>
                     <option value="universes">Universes</option>
                 </select>
-                <input type="submit" value="Load" id="Load">
+                <input type="button" value="Load" id="Load">
             </div>
             <div class="attribute-row">
                 <label>Attribute(s):</label>
                 <div id="checks" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Select Attribute(s):</span>
                     <ul name="attributes" id="attributes" class="attributes">
-                        <li><input type="checkbox" />Earth Number</li>
-                        <li><input type="checkbox" />Name</li>
-                        <li><input type="checkbox" />Status</li>
-                        <li><input type="checkbox" />Timeline</li>
+                        <li><input type="checkbox" value="EarthNumber"/>Earth Number</li>
+                        <li><input type="checkbox" value="Name"/>Name</li>
+                        <li><input type="checkbox" value="Status"/>Status</li>
+                        <li><input type="checkbox" value="Timeline"/>Timeline</li>
                     </ul>
                 </div>
             </div>
@@ -48,13 +48,13 @@
         </form>
 
         <table>
-            <thead>
+            <thead id="view-thead">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="view-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>
