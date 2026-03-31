@@ -26,7 +26,7 @@
         <form>
             <div class="attribute-row select-row">
                 <label>Select Table:</label>
-                <select name="selecttable" id="selecttable">
+                <select name="viewtable" id="viewtable">
                     <option value="">Select Table</option>
                     <option value="superhero">Superhero</option>
                     <option value="villain">Villain</option>
@@ -91,14 +91,14 @@
                 <label>Add conditions to select:</label>
                 <div id="conditions">
                     <div class="condition-row">
-                        <select name="search-attribute" id="search-attribute">
+                        <select name="search-attribute" id="search-attribute" , class="search-attribute">
                             <option value="">Select Attribute</option>
-                            <option value="actorName">Actor Name</option>
-                            <option value="alias">Alias</option>
-                            <option value="characterName">Character Name</option>
-                            <option value="standing">Standing</option>
-                            <option value="species">Species</option>
-                            <option value="publicIdentity">Public Identity</option>
+                            <option value="ActorName">Actor Name</option>
+                            <option value="Alias">Alias</option>
+                            <option value="CharacterName">Character Name</option>
+                            <option value="Standing">Standing</option>
+                            <option value="Species">Species</option>
+                            <option value="PublicIdentity">Public Identity</option>
                         </select>
                         <select name="equal" id="equal">
                             <option value="=">=</option>
@@ -106,18 +106,37 @@
                             <option value="&lt">&lt</option>
                             <option value="&gt">&gt</option>
                         </select>
-                        <input type="text" id="search-text" name="search"><br>
+                        <input type="text" class="search-text" id="search-text" name="search"><br>
                     </div>
                 </div>
 
                 <div class="button-row">
                     <button type="button" class="and">+ AND</button>
-                    <button tpye="button" class="or">+ OR</button>
+                    <button type="button" class="or">+ OR</button>
                 </div>
                 <br>
-                <input type="submit" value="Search" id="search-button">
+                <input type="button" value="Search" id="search-button">
             </form>
         </search>
+
+        <table>
+            <thead id="select-thead">
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody id="select-tbody">
+                <tr>
+                    <td>Data1</td>
+                    <td>Data2</td>
+                </tr>
+                <tr>
+                    <td>Data3</td>
+                    <td>Data4</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- INSERT TAB -->
@@ -126,14 +145,15 @@
         <h2>Insert Data</h2>
         <form>
             <label for="heroActorName">Hero Actor Name:</label>
-            <input type="text" id="heroActorName" name="heroActorName"><br>
+            <input type="text" value="heroActorName" id="heroActorName" name="heroActorName"><br>
             <label for="heroAlias">Hero Alias:</label>
-            <input type="text" id="heroAlias" name="heroAlias"><br>
+            <input type="text" value="heroAlias" id="heroAlias" name="heroAlias"><br>
             <label for="powerid">PowerID:</label>
-            <input type="text" id="powerid" name="powerid"><br>
+            <input type="text" value="powerid" id="powerid" name="powerid"><br>
             <label for="dateGained">Date Gained:</label>
-            <input type="text" name="dateGained" id="dateGained"><br>
-            <input type="submit" value="Insert" id="Insert">
+            <input type="text" value="dateGained" name="dateGained" id="dateGained"><br>
+            <input type="button" value="Insert" id="insert-button">
+            <p id="insert-message"></p>
         </form>
     </div>
 
@@ -144,7 +164,7 @@
         <form>
             <div class="update-row">
                 <label>Select Power</label>
-                <select id="selecttable">
+                <select id="updatetable">
                     <option value="">select power</option>
                     <option value="">1</option>
                 </select>
@@ -152,12 +172,13 @@
 
             <div id="update-nonprimary">
                 <label for="update-skillset">Skill Set:</label>
-                <input type="text" id="update-skillset" name="skillset"><br>
+                <input type="text" value=update-skillset id="update-skillset" name="skillset"><br>
                 <label for="update-weapon">Weapon:</label>
-                <input type="text" id="update-weapon" name="weapon"><br>
+                <input type="text" value="update-weapon" id="update-weapon" name="weapon"><br>
                 <label for="update-weaponType">Weapon Type:</label>
-                <input type="text" id="update-weaponType" name="weaponType"><br>
-                <input type="submit" value="Update" id="update">
+                <input type="text" value="update-weaponType" id="update-weaponType" name="weaponType"><br>
+                <input type="submit" value="Update" id="update-button">
+                <p id="update-message"></p>
             </div>
         </form>
     </div>
@@ -173,14 +194,15 @@
                     <option value="">select power</option>
                     <option value="">1</option>
                 </select>
-                <input type="submit" value="Delete" id="Load">
+                <input type="button" value="Delete" id="delete-button">
+                <p id="delete-message"></p>
             </div>
 
             <h2>Join</h2>
 
             <div class="first-table">
                 <label>Select First Table:</label>
-                <select name="selecttable" id="selecttable">
+                <select name="firsttable" id="firsttable">
                     <option value="">Select Table</option>
                     <option value="superhero">Superhero</option>
                 </select>
@@ -188,15 +210,15 @@
 
             <div class="second-table">
                 <label>Select Second Table:</label>
-                <select name="selecttable" id="selecttable">
+                <select name="secondtable" id="secondtable">
                     <option value="">Select Table</option>
                     <option value="power">Power</option>
                 </select>
             </div>
 
             <div class="value">
-                <label for="join-attribute">Find ... for ...:</label>
-                <input type="text" id="join-attribute" name="skillset">
+                <label for="join-attribute">Find Species:</label>
+                <input type="text" id="join-attribute" name="species">
                 <input type="submit" value="Join" id="join">
             </div>
 
@@ -222,18 +244,20 @@
         </table>
     </div>
 
+    <!-- ADVANCED QUERY TAB -->
+
     <div id="AdvancedQuery" class="tabcontent">
         <h2>Advanced Query</h2>
         <h3>GROUP BY</h3>
         <button id="groupby-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="groupby-thead">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="groupby-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>
@@ -248,13 +272,13 @@
         <h3>HAVING</h3>
         <button id="having-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="having-thead">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="having-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>
@@ -270,13 +294,14 @@
         <h3>NESTED AGGREGATION W/ GROUP BY</h3>
         <button id="nested-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="nested-thead">
                 <tr>
+
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="nested-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>
@@ -292,13 +317,13 @@
         <h3>DIVISION</h3>
         <button id="division-button">Run Query</button>
         <table>
-            <thead>
+            <thead id="division-thead">
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="division-tbody">
                 <tr>
                     <td>Data1</td>
                     <td>Data2</td>

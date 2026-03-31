@@ -73,7 +73,9 @@ h2 {
     margin-bottom: 10px;
 }
 
-#selecttable, #deletetable, #join-attribute {
+#selecttable, #deletetable, 
+#join-attribute, #viewtable,
+#updatetable, #firsttable, #secondtable {
     flex: 1;
     padding: .5em;
     border-radius: 5px;
@@ -160,7 +162,8 @@ h2 {
 
 #Load,
 .and,
-.or, #search-button, #join {
+.or, #search-button, 
+#join, #delete-button {
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #577AC6;
@@ -170,6 +173,19 @@ h2 {
     font-size: 1em;
     cursor: pointer;
     white-space: nowrap;
+}
+
+#search-button {
+    padding: .5em 1.2em;
+    border-radius: 5px;
+    background-color: #577AC6;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-bottom: 15px;
 }
 
 .tabcontent {
@@ -200,7 +216,7 @@ th {
     padding-bottom: 1em;
 }
 
-#Insert, #update {
+#insert-button, #update-button {
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #577AC6;
