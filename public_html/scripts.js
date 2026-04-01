@@ -46,7 +46,7 @@ document.querySelectorAll("#attributes input[type='checkbox']").forEach(box => {
 
 document.querySelector("#Load").addEventListener("click", async function () {
   if (checkedmarks.length === 0) {
-    console.log("Array is empty, no attributes selected");
+    alert("Array is empty, no attributes selected");
   } else {
     const response = await fetch("/universes?fields=" + checkedmarks.join(","), {
       method: "GET"
@@ -63,6 +63,11 @@ document.querySelector("#Load").addEventListener("click", async function () {
     } else {
       tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
       tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+    }
+    if (response.ok) {
+      document.getElementById("view-message").textContent = result.success;
+    } else {
+      document.getElementById("view-message").textContent = result.error;
     }
   }
 });
