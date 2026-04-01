@@ -68,8 +68,8 @@ router.post("/heroHasPower", async (req, res) => {
             dateGained
         );
 
-        if (insertion) {
-            res.status(201).json({ success: "Successfully inserted the HeroHasPower" });
+        if (insertion != []) {
+            res.status(201).json({ success: insertion });
         } else {
             res.status(500).json({ error: "Failed to insert" });
         }
