@@ -162,7 +162,7 @@ document.querySelector("#insert-button").addEventListener("click", async functio
 
 
   if (response.ok) {
-    document.getElementById("insert-message").textContent = result.success;
+    document.getElementById("insert-message").textContent = "Successfully inserted";
     loadHeroHasPowerTable()
   } else {
     document.getElementById("insert-message").textContent = result.error;
