@@ -69,4 +69,3 @@ if [ $PORT -gt $MAX_PORT ]; then
     echo "No available port found between $START and $MAX_PORT"
     exit 1
 fi
-
