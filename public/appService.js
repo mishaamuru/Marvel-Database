@@ -185,10 +185,15 @@ async function insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained)
         VALUES (:heroActorName, :heroAlias, :powerID, :dateGained)
         `;
 
-        result = await connection.execute(insertSql, 
+        await connection.execute(insertSql, 
             {heroActorName, heroAlias, powerID, dateGained},
             {autoCommit: true }
         );
+
+        const sql = `
+        SELECT *
+        FROM HeroHasPower`;
+        const result = await connection.execute(sql);
         return result.rows;
     }).catch(() => {
         return [];
