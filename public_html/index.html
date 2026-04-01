@@ -10,14 +10,25 @@
 
 <body>
     <div class="tab">
-        <h3>Marvel Database</h3>
-        <button class="tablinks" onclick="openTab(event, 'ViewData')" id="defaultOpen">View Data</button>
+        <button class="tablinks" onclick="openTab(event, 'HomeTab')" id="defaultOpen">Home Tab</button>
+        <button class="tablinks" onclick="openTab(event, 'ViewData')">View Data</button>
         <button class="tablinks" onclick="openTab(event, 'Select')">Select</button>
         <button class="tablinks" onclick="openTab(event, 'InsertData')">Insert Data</button>
         <button class="tablinks" onclick="openTab(event, 'Update')">Update</button>
         <button class="tablinks" onclick="openTab(event, 'Delete/Join')">Delete & Join</button>
         <button class="tablinks" onclick="openTab(event, 'AdvancedQuery')">Advanced Query</button>
     </div>
+
+    <!-- HOME TAB -->
+     <div id="HomeTab" class="tabcontent">
+        <div class="home-header"> 
+            <h2>Welcome To Marvel Database</h2>
+        </div>
+        <div class="content">
+            <p>Where would you like to go?</p>
+        </div>
+     </div>
+
 
     <!-- VIEW TAB -->
 
@@ -31,7 +42,6 @@
                 <div class="attribute-row select-row">
                     <label>Select Table:</label>
                     <select name="viewtable" id="viewtable">
-                        <option value="">Select Table</option>
                         <option value="universes">Universes</option>
                     </select>
                     <input type="button" value="Load" id="Load">
@@ -201,7 +211,7 @@
             <div class="delete-row">
                 <label>Select Power</label>
                 <select id="deletetable">
-                    <option value="">select power</option>
+                    <option value="">Select Power</option>
                     <option value="">1</option>
                 </select>
                 <input type="button" value="Delete" id="delete-button">
@@ -213,7 +223,6 @@
             <div class="first-table">
                 <label>Select First Table:</label>
                 <select name="firsttable" id="firsttable">
-                    <option value="">Select Table</option>
                     <option value="superhero">Superhero</option>
                 </select>
             </div>
@@ -221,7 +230,6 @@
             <div class="second-table">
                 <label>Select Second Table:</label>
                 <select name="secondtable" id="secondtable">
-                    <option value="">Select Table</option>
                     <option value="power">Power</option>
                 </select>
             </div>

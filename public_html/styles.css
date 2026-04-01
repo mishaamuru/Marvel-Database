@@ -2,61 +2,82 @@ body {
     font-family: Verdana, sans-serif;
 }
 
+/* background image */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('marvel.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    /* filter: blur(8px); */
+    transform: scale(1.05);
+    z-index: -100;
+    opacity: 0.6;
+}
+
+/* changed to horizontal nav bar */
 .tab {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #3F4761;
-    width: 20%;
-    min-height: 100vh;
+    right: 0;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    background-color: #b71c1c;
+    z-index: 1000;
     border: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* Tab button */
 .tab button {
-    background-color: #3F4761;
+    background-color: transparent;
     position: relative;
     color: white;
-    padding: .5em 1em;
-    width: 100%;
+    padding: 0.4em 2em;
+    width: 15%;
     border: none;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
     transition: 0.3s;
-    font-size: larger;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 10%;
 }
 
+/* Hover colour  */
 .tab button:hover {
-    background-color: #5b6a93;
-    padding-left: 1.3em;
+    background-color: #da6b70;
 }
 
+/* Line hover */
 .tablinks::before {
     content: '';
     position: absolute;
-    top: 0;
+    right: 0;
     left: 0;
-    height: 100%;
-    width: 4px;
-    background-color: #56bcff;
-    transition: 300ms ease-in-out;
-    transform: scaleY(0);
-    transform-origin: center;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #ffffff;
+    transition: 300ms ease-in;
+    transform: scaleX(0);
+    transform-origin: left;
 }
 
 .tablinks.active::before,
 .tablinks:hover::before,
 .tablinks:focus::before {
-    transform: scaleY(1);
-}
-
-.tab h3 {
-    color: white;
-    padding: 1.3em;
+    transform: scaleX(1);
 }
 
 h2 {
-    color: black;
-    padding: .5em;
+    color: #b71c1c;
+    padding: .05em;
 }
 
 .select-row, .delete-row {
@@ -85,7 +106,7 @@ h2 {
 #join {
     padding: .5em 1.2em;
     border-radius: 5px;
-    background-color: #577AC6;
+    background-color: #b71c1c;
     border: none;
     color: white;
     font-weight: bold;
@@ -153,7 +174,7 @@ h2 {
 }
 
 .dropdown-check-list.visible .anchor {
-  color: #0094ff;
+  color: #b71c1c;
 }
 
 .dropdown-check-list.visible .attributes {
@@ -166,7 +187,7 @@ h2 {
 #join, #delete-button {
     padding: .5em 1.2em;
     border-radius: 5px;
-    background-color: #577AC6;
+    background-color: #b71c1c;
     border: none;
     color: white;
     font-weight: bold;
@@ -178,7 +199,7 @@ h2 {
 #search-button {
     padding: .5em 1.2em;
     border-radius: 5px;
-    background-color: #577AC6;
+    background-color: #b71c1c;
     border: none;
     color: white;
     font-weight: bold;
@@ -189,13 +210,21 @@ h2 {
 }
 
 .tabcontent {
-    margin-left: 20%;
-    padding: 0;
+    margin-left: 0;
+    margin-top: 60px;
+    padding: 1.3em;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(7px);
+    min-height: calc(100vh - 60px);
+    border-radius: 10px;
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th,
@@ -206,7 +235,8 @@ td {
 }
 
 th {
-    background-color: #f4f4f4;
+    background-color: #f2f2f2;
+    text-transform: uppercase;
 }
 
 .attribute-row {
@@ -219,7 +249,7 @@ th {
 #insert-button, #update-button {
     padding: .5em 1.2em;
     border-radius: 5px;
-    background-color: #577AC6;
+    background-color: #b71c1c;
     border: none;
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -233,7 +263,7 @@ th {
 #division-button, #groupby-button {
     padding: .5em 1.2em;
     border-radius: 5px;
-    background-color: #577AC6;
+    background-color: #b71c1c;
     border: none;
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -301,22 +331,4 @@ th {
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 150px;
-}
-
-/* headers */
-.view-header {
-    background-color: #3F4761;
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.view-header h2 {
-    margin: 0;
-    color: white;
-}
-
-.content {
-    padding: 30px;
 }
