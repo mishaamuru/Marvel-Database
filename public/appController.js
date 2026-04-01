@@ -34,30 +34,50 @@ router.post("/initiate-demotable", async (req, res) => {
 
 //this is for insertion, and it is to insert into table HeroHasPower
 router.post("/heroHasPower", async (req, res) => {
-    const {heroActorName, heroAlias, powerID, dateGained} = req.body;
-    //validation to ensure that the fields have values
-    const checkValidation = validation.insertValidate(heroActorName, heroAlias, powerID, dateGained);
-    if (checkValidation !== "everything looks good") {
-        res.status(422).json({error: checkValidation});
-        return;
+    try {
+        const { heroActorName, heroAlias, powerID, dateGained } = req.body;
+
+        const checkValidation = validation.insertValidate(
+            heroActorName,
+            heroAlias,
+            powerID,
+            dateGained
+        );
+
+        if (checkValidation !== "everything looks good") {
+            res.status(422).json({ error: checkValidation });
+            return;
+        }
+
+        const heroCheck = await appService.checkHeroExists(heroActorName, heroAlias);
+        if (!heroCheck) {
+            res.status(404).json({ error: "Hero does not exist in Superhero" });
+            return;
+        }
+
+        const powerCheck = await appService.checkPowerExists(powerID);
+        if (!powerCheck) {
+            res.status(404).json({ error: "Power ID does not exist in Power" });
+            return;
+        }
+
+        const insertion = await appService.insertHeroHasPower(
+            heroActorName,
+            heroAlias,
+            powerID,
+            dateGained
+        );
+
+        if (insertion) {
+            res.status(201).json({ success: insertion });
+        } else {
+            res.status(500).json({ error: "Failed to insert" });
+        }
+    } catch (err) {
+        res.status(500).json({ error: "Internal server error" });
     }
-    
-    //check that the superhero itself exists
-    const heroCheck = await appService.checkHeroExists(heroActorName, heroAlias);
-    if (heroCheck !== "exists") {
-        res.status(404).json({error: "Hero does not exist in Superhero"});
-        return;
-    }
-    const powerCheck = await appService.checkPowerExists(powerID);
-    if (!powerCheck) {
-        res.status(404).json({error: "Power ID does not exist in Power"});
-        return;
-    }
-    const insertion = await appService.insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained);
-    if (insertion) res.status(201).json({success: "Successfully inserted the HeroHasPower"});
-    else res.status(404).json({error: "Failed to insert"});
-    return;
-})
+});
+
 
 
 
@@ -99,19 +119,24 @@ router.get("/powers", async (req, res) => {
 //this is for delete, and it is to delete from Power
 //How it is done: By specifying the primary key
 router.delete("/powers/:powerid", async (req, res) => {
-    const powerID = Number(req.params.powerid);
-    const exists = await validation.deleteValidate(powerID);
-    if (!exists) {
-        res.status(422).json({error: "There is no power with Power ID: " + powerID});
+    try {
+        const powerID = Number(req.params.powerid);
+        const exists = await validation.deleteValidate(powerID);
+        if (!exists) {
+            res.status(422).json({error: "There is no power with Power ID: " + powerID});
+            return;
+        }
+        const deletePower = await appService.deletePower(powerID);
+        if (!deletePower) {
+            res.status(404).json({error: "Unable to delete"});
+            return;
+        }
+        res.status(200).json({success: "Able to delete Power with Power ID: " + powerID});
         return;
+    } catch (err) {
+        res.status(500).json({ error: "Internal server error" });
     }
-    const deletePower = await appService.deletePower(powerID);
-    if (!deletePower) {
-        res.status(404).json({error: "Unable to delete"});
-        return;
-    }
-    res.status(200).json({success: "Able to delete Power with Power ID: " + powerID});
-    return
+
 })
 
 
@@ -144,7 +169,7 @@ router.get("/universes", async (req, res) => {
         return;
     }
     //this will give an array splitting the elements based on where the comma is
-    const fields = fieldsParam.split(",");
+    const fields = fieldParams.split(",");
     const validationCheck = validation.validateProjection(fields);
     if (validationCheck !== "everything looks good") {
         res.status(422).json({error: validation});
@@ -199,12 +224,67 @@ router.get("/superheroes/space-stone-powers", async (req, res) => {
     }
 })
 
-module.exports = router;
+
 //--------------------------------------------------------
 //                  ROJIN'S IMPLEMENTATION
 //--------------------------------------------------------
-//join query 
-//TODO
 
-//nested aggregation with group by
-//TODO
+
+//join query 
+//this will return superheros and their powers for the given species 
+router.post("/superheroes/join-species", async (req, res) => {
+    const { species } = req.body;
+
+    if (!species || species.trim() === "") {
+        res.status(422).json({ error: "Species is required." });
+        return;
+    }
+
+    try {
+        const result = await appService.getSuperheroesAndPowersBySpecies(species);
+        res.status(200).json({ data: result });
+        return;
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+        return;
+    }
+});
+
+//nested aggregation with GROUP BY
+//this finds the species with the highest number of superheros by comparing each species count to all the others
+router.get("/superheroes/top-species", async (req, res) => {
+    try {
+        const result = await appService.getTopSpecies();
+        return res.status(200).json({ data: result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+//This is to be able to view the tables
+router.get("/superheros", async (req, res) => {
+    const getSuperheros = await appService.getSuperheros();
+    res.status(200).json({data: getSuperheros});
+})
+
+//This is to be able to view villains
+router.get("/villains", async (req, res) => {
+    const getVillains = await appService.getVillains();
+    res.status(200).json({data: getVillains});
+})
+
+//This is to be able to view teams
+router.get("/teams", async (req, res) => {
+    const getTeams = await appService.getTeams();
+    res.status(200).json({data: getTeams});
+})
+
+router.get("/heroHasPower", async (req, res) => {
+    const getHeroHasPower = await appService.getHeroHasPower();
+    res.status(200).json({data: getHeroHasPower});
+})
+
+
+module.exports = router;

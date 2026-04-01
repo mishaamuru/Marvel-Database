@@ -182,16 +182,16 @@ async function insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained)
     return await withOracleDB(async (connection) => {
         const insertSql = `
         INSERT INTO HeroHasPower (HeroActorName, HeroAlias, PowerID, DateGained)
-        VALUES (:heroActorName, :heroAlias, :powerID, :dateGained)
+        VALUES (:heroActorName, :heroAlias, :powerID, TO_DATE(:dateGained, 'YYYY-MM-DD'))
         `;
 
-        await connection.execute(insertSql, 
+        result = await connection.execute(insertSql, 
             {heroActorName, heroAlias, powerID, dateGained},
             {autoCommit: true }
         );
-        return true;
+        return result.rowsAffected && result.rowsAffected > 0;
     }).catch(() => {
-        return false;
+        return [];
     });
 }
 
@@ -233,7 +233,59 @@ async function getPowers() {
             SELECT *
             FROM Power`;
         const result = await connection.execute(sql);
-        return result;
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+//this will retieve all tables for superhero
+async function getSuperheros() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Superhero`;
+        const result = await connection.execute(sql);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+//heroHasPower
+async function getHeroHasPower() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM HeroHasPower`;
+        const result = await connection.execute(sql);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    })
+}
+
+//this will retieve all tables for teams
+async function getTeams() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Team`;
+        const result = await connection.execute(sql);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+//this will retieve all tables for villains
+async function getVillains() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Villain`;
+        const result = await connection.execute(sql);
+        return result.rows;
     }).catch(() => {
         return [];
     });
@@ -372,6 +424,56 @@ async function getSuperheroesWithSpaceStonePowers() {
     });
 }
 
+async function getSuperheroesAndPowersBySpecies(species) {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT s.ActorName,
+                   s.Alias,
+                   s.CharacterName,
+                   h.PowerID
+            FROM Superhero s
+            JOIN HeroHasPower h
+              ON s.ActorName = h.HeroActorName
+             AND s.Alias = h.HeroAlias
+            WHERE s.Species = :species
+            ORDER BY s.Alias, h.PowerID
+        `;
+
+        const result = await connection.execute(
+            sql,
+            { species: species.trim() },
+            { outFormat: oracledb.OUT_FORMAT_OBJECT }
+        );
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+async function getTopSpecies() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT s.Species,
+                   COUNT(*) AS HeroCount
+            FROM Superhero s
+            GROUP BY s.Species
+            HAVING COUNT(*) >= ALL (
+                SELECT COUNT(*)
+                FROM Superhero s2
+                GROUP BY s2.Species
+            )
+        `;
+
+        const result = await connection.execute(sql, {}, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
+
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
 
 module.exports = {
     testOracleConnection,
@@ -385,10 +487,16 @@ module.exports = {
     insertHeroHasPower,
     updatePower,
     getPowers,
+    getSuperheros,
+    getVillains,
+    getTeams,
     deletePower,
     searchBody,
     universeProjection,
     getVillainStandingCount,
     getSuperheroSpeciesCount,
     getSuperheroesWithSpaceStonePowers,
+    getSuperheroesAndPowersBySpecies,
+    getTopSpecies,
+    getHeroHasPower
 };

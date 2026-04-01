@@ -49,6 +49,46 @@ checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
     checkList.classList.add('visible');
 }
 
+const checkedmarks = []
+
+document.querySelectorAll("#attributes input[type='checkbox']").forEach(box => {
+  box.addEventListener("change", function () {
+    if (this.checked) {
+      checkedmarks.push(this.value);
+    } else {
+      checkedmarks.splice(checkedmarks.indexOf(this.value), 1);
+    }
+  });
+});
+
+document.querySelector("#Load").addEventListener("click", async function () {
+  if (checkedmarks.length === 0) {
+    alert("Array is empty, no attributes selected");
+  } else {
+    const response = await fetch("/universes?fields=" + checkedmarks.join(","), {
+      method: "GET"
+    });
+
+    const result = await response.json();
+    const tableHead = document.querySelector("#view-thead");
+    const tableBody = document.querySelector("#view-tbody");
+
+    if (result.data.length === 0) {
+      console.log("No data returned");
+      tableHead.innerHTML = "";
+      tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+    } else {
+      tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+      tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+    }
+    if (response.ok) {
+      document.getElementById("view-message").textContent = result.success;
+    } else {
+      document.getElementById("view-message").textContent = result.error;
+    }
+  }
+});
+
 function newCondition() {
   return `<select name="search-attribute" class="search-attribute">
                             <option value="">Select Attribute</option>
@@ -134,15 +174,36 @@ document.querySelector("#insert-button").addEventListener("click", async functio
     },
     body: JSON.stringify({ heroActorName: heroname, heroAlias: heroalias, powerID: Number(powerid), dateGained: dategained })
   });
-
   const result = await response.json();
+  console.log(result);
+
+
   if (response.ok) {
-    document.getElementById("insert-message").textContent = result.success;
+    document.getElementById("insert-message").textContent = "Successfully inserted";
+    loadHeroHasPowerTable()
   } else {
     document.getElementById("insert-message").textContent = result.error;
   }
 
 });
+
+async function loadHeroHasPowerTable() {
+
+  const response = await fetch("/heroHasPower");
+  const result = await response.json();
+  console.log(result);
+  const tableHead = document.querySelector("#insert-thead");
+  const tableBody = document.querySelector("#insert-tbody");
+
+  if (!result.data || result.data.length === 0) {
+    console.log("No data returned");
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+  } else {
+    tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+    tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+  }
+}
 
 // Update Tab
 (async function () {
@@ -203,6 +264,8 @@ document.querySelector("#delete-button").addEventListener("click", async functio
   }
 });
 
+//TODO
+// Join 
 
 // Advanced Query Tab
 document.querySelector("#groupby-button").addEventListener("click", async function () {

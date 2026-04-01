@@ -54,12 +54,13 @@ class Validation {
 
     //helper for insert, checks for validation
     insertValidate(heroActorName, heroAlias, powerID, dateGained) {
+        if (!Number.isInteger(powerID)) return "The Power ID must be an integer";
+        if (!isValidDate(dateGained)) return "The Date must be in a valid format";
+        if (typeof heroActorName != "string") return "The Actor Name must be a string";
+        if (typeof heroAlias != "string") return "The Alias Name must be a string";
         if (!heroActorName || !heroAlias || powerID === undefined || powerID === null || !dateGained) {
             return "All fields must be non-empty.";
         }
-        if (typeof heroActorName != "string") return "The Actor Name must be a string";
-        if (typeof heroAlias != "string") return "The Alias Name must be a string";
-        if (!Number.isInteger(powerID)) return "The Power ID must be an integer";
         if (typeof dateGained !== "string" || isNaN(Date.parse(dateGained))) {
             return "The date gained must be a valid date string";
         }
