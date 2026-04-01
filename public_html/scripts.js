@@ -158,6 +158,18 @@ document.querySelector("#insert-button").addEventListener("click", async functio
     body: JSON.stringify({ heroActorName: heroname, heroAlias: heroalias, powerID: Number(powerid), dateGained: dategained })
   });
 
+  const tableHead = document.querySelector("#insert-thead");
+  const tableBody = document.querySelector("#insert-tbody");
+
+  if (result.data.length === 0) {
+    console.log("No data returned");
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+  } else {
+    tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+    tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+  }
+
   const result = await response.json();
   if (response.ok) {
     document.getElementById("insert-message").textContent = result.success;

@@ -101,9 +101,6 @@
                         </select>
                         <select name="equal" id="equal">
                             <option value="=">=</option>
-                            <option value="!=">!=</option>
-                            <option value="&lt">&lt</option>
-                            <option value="&gt">&gt</option>
                         </select>
                         <input type="text" class="search-text" id="search-text" name="search"><br>
                     </div>
@@ -154,6 +151,20 @@
             <input type="button" value="Insert" id="insert-button">
             <p id="insert-message"></p>
         </form>
+
+        <table>
+                <thead id="insert-thead">
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody id="insert-tbody">
+                    <tr>
+                    </tr>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+
     </div>
 
     <!-- UPDATE TAB -->
@@ -176,7 +187,7 @@
                 <input type="text" placeholder="Enter Weapon" id="update-weapon" name="weapon"><br>
                 <label for="update-weaponType">Weapon Type:</label>
                 <input type="text" placeholder="Enter Weapon Type" id="update-weaponType" name="weaponType"><br>
-                <input type="submit" value="Update" id="update-button">
+                <input type="button" value="Update" id="update-button">
                 <p id="update-message"></p>
             </div>
         </form>
