@@ -233,7 +233,7 @@ async function getPowers() {
             SELECT *
             FROM Power`;
         const result = await connection.execute(sql);
-        return result;
+        return result.rows;
     }).catch(() => {
         return [];
     });
@@ -246,7 +246,7 @@ async function getSuperheros() {
             SELECT *
             FROM Superhero`;
         const result = await connection.execute(sql);
-        return result;
+        return result.rows;
     }).catch(() => {
         return [];
     });
@@ -259,20 +259,20 @@ async function getTeams() {
             SELECT *
             FROM Team`;
         const result = await connection.execute(sql);
-        return result;
+        return result.rows;
     }).catch(() => {
         return [];
     });
 }
 
 //this will retieve all tables for villains
-async function getTeams() {
+async function getVillains() {
     return await withOracleDB(async (connection) => {
         const sql = `
             SELECT *
             FROM Villain`;
         const result = await connection.execute(sql);
-        return result;
+        return result.rows;
     }).catch(() => {
         return [];
     });
