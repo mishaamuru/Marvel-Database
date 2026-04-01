@@ -252,6 +252,19 @@ async function getSuperheros() {
     });
 }
 
+//heroHasPower
+async function getHeroHasPower() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM HeroHasPower`;
+        const result = await connection.execute(sql);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    })
+}
+
 //this will retieve all tables for teams
 async function getTeams() {
     return await withOracleDB(async (connection) => {
@@ -485,4 +498,5 @@ module.exports = {
     getSuperheroesWithSpaceStonePowers,
     getSuperheroesAndPowersBySpecies,
     getTopSpecies,
+    getHeroHasPower
 };

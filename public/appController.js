@@ -118,19 +118,24 @@ router.get("/powers", async (req, res) => {
 //this is for delete, and it is to delete from Power
 //How it is done: By specifying the primary key
 router.delete("/powers/:powerid", async (req, res) => {
-    const powerID = Number(req.params.powerid);
-    const exists = await validation.deleteValidate(powerID);
-    if (!exists) {
-        res.status(422).json({error: "There is no power with Power ID: " + powerID});
+    try {
+        const powerID = Number(req.params.powerid);
+        const exists = await validation.deleteValidate(powerID);
+        if (!exists) {
+            res.status(422).json({error: "There is no power with Power ID: " + powerID});
+            return;
+        }
+        const deletePower = await appService.deletePower(powerID);
+        if (!deletePower) {
+            res.status(404).json({error: "Unable to delete"});
+            return;
+        }
+        res.status(200).json({success: "Able to delete Power with Power ID: " + powerID});
         return;
+    } catch (err) {
+        res.status(500).json({ error: "Internal server error" });
     }
-    const deletePower = await appService.deletePower(powerID);
-    if (!deletePower) {
-        res.status(404).json({error: "Unable to delete"});
-        return;
-    }
-    res.status(200).json({success: "Able to delete Power with Power ID: " + powerID});
-    return
+
 })
 
 
@@ -275,6 +280,10 @@ router.get("/teams", async (req, res) => {
     res.status(200).json({data: getTeams});
 })
 
+router.get("/heroHasPower", async (req, res) => {
+    const getHeroHasPower = await appService.getHeroHasPower();
+    res.status(200).json({data: getHeroHasPower});
+})
 
 
   
