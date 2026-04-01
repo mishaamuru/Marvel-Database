@@ -1220,3 +1220,8 @@ VALUES
     (5, 'Time Stone', 199999);
     
 --INSERTS FOR THE TABLE
+
+INSERT INTO
+    Superhero
+VALUES
+    ()

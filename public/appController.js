@@ -34,30 +34,49 @@ router.post("/initiate-demotable", async (req, res) => {
 
 //this is for insertion, and it is to insert into table HeroHasPower
 router.post("/heroHasPower", async (req, res) => {
-    const {heroActorName, heroAlias, powerID, dateGained} = req.body;
-    //validation to ensure that the fields have values
-    const checkValidation = validation.insertValidate(heroActorName, heroAlias, powerID, dateGained);
-    if (checkValidation !== "everything looks good") {
-        res.status(422).json({error: checkValidation});
-        return;
+    try {
+        const { heroActorName, heroAlias, powerID, dateGained } = req.body;
+
+        const checkValidation = validation.insertValidate(
+            heroActorName,
+            heroAlias,
+            powerID,
+            dateGained
+        );
+
+        if (checkValidation !== "everything looks good") {
+            res.status(422).json({ error: checkValidation });
+            return;
+        }
+
+        const heroCheck = await appService.checkHeroExists(heroActorName, heroAlias);
+        if (!heroCheck) {
+            res.status(404).json({ error: "Hero does not exist in Superhero" });
+            return;
+        }
+
+        const powerCheck = await appService.checkPowerExists(powerID);
+        if (!powerCheck) {
+            res.status(404).json({ error: "Power ID does not exist in Power" });
+            return;
+        }
+
+        const insertion = await appService.insertHeroHasPower(
+            heroActorName,
+            heroAlias,
+            powerID,
+            dateGained
+        );
+
+        if (insertion) {
+            res.status(201).json({ success: "Successfully inserted the HeroHasPower" });
+        } else {
+            res.status(500).json({ error: "Failed to insert" });
+        }
+    } catch (err) {
+        res.status(500).json({ error: "Internal server error" });
     }
-    
-    //check that the superhero itself exists
-    const heroCheck = await appService.checkHeroExists(heroActorName, heroAlias);
-    if (heroCheck !== "exists") {
-        res.status(404).json({error: "Hero does not exist in Superhero"});
-        return;
-    }
-    const powerCheck = await appService.checkPowerExists(powerID);
-    if (!powerCheck) {
-        res.status(404).json({error: "Power ID does not exist in Power"});
-        return;
-    }
-    const insertion = await appService.insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained);
-    if (insertion) res.status(201).json({success: "Successfully inserted the HeroHasPower"});
-    else res.status(404).json({error: "Failed to insert"});
-    return;
-})
+});
 
 
 
@@ -144,7 +163,7 @@ router.get("/universes", async (req, res) => {
         return;
     }
     //this will give an array splitting the elements based on where the comma is
-    const fields = fieldsParam.split(",");
+    const fields = fieldParams.split(",");
     const validationCheck = validation.validateProjection(fields);
     if (validationCheck !== "everything looks good") {
         res.status(422).json({error: validation});
