@@ -182,14 +182,14 @@ async function insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained)
     return await withOracleDB(async (connection) => {
         const insertSql = `
         INSERT INTO HeroHasPower (HeroActorName, HeroAlias, PowerID, DateGained)
-        VALUES (:heroActorName, :heroAlias, :powerID, :dateGained)
+        VALUES (:heroActorName, :heroAlias, :powerID, TO_DATE(:dateGained, 'YYYY-MM-DD'))
         `;
 
         result = await connection.execute(insertSql, 
             {heroActorName, heroAlias, powerID, dateGained},
             {autoCommit: true }
         );
-        return result.rows;
+        return result.rowsAffected && result.rowsAffected > 0;
     }).catch(() => {
         return [];
     });
