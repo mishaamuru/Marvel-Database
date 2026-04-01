@@ -224,7 +224,7 @@ router.get("/superheroes/space-stone-powers", async (req, res) => {
     }
 })
 
-module.exports = router;
+
 //--------------------------------------------------------
 //                  ROJIN'S IMPLEMENTATION
 //--------------------------------------------------------
@@ -287,4 +287,4 @@ router.get("/heroHasPower", async (req, res) => {
 })
 
 
-  
+module.exports = router;
