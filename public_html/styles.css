@@ -190,7 +190,7 @@ h2 {
 
 .tabcontent {
     margin-left: 20%;
-    padding: 1.3em;
+    padding: 0;
 }
 
 table {
@@ -301,4 +301,22 @@ th {
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 150px;
+}
+
+/* headers */
+.view-header {
+    background-color: #3F4761;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.view-header h2 {
+    margin: 0;
+    color: white;
+}
+
+.content {
+    padding: 30px;
 }
