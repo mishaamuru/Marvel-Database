@@ -7,7 +7,7 @@ const loadEnvFile = require('./utils/envUtil');
 const envVariables = loadEnvFile('./.env');
 
 const app = express();
-const PORT = envVariables.PORT || 65534;
+const PORT = envVariables.PORT || 70535;
 
 // Middleware setup
 app.use(express.static(path.join(__dirname, 'public_html')));

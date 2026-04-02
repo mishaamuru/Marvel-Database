@@ -30,7 +30,7 @@ sed -i "/^ORACLE_PORT=/c\ORACLE_PORT=1522" $ENV_SERVER_PATH
 # Define starting port
 START=49152
 TEAM_NUMBER=47
-MAX_PORT=65535
+MAX_PORT=70535
 
 # Check if TEAM_NUMBER is set
 if [ -z "$TEAM_NUMBER" ]; then

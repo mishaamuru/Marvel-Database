@@ -225,17 +225,17 @@ document.querySelector("#update-button").addEventListener("click", async functio
 
 // Delete Tab
 (async function () {
-  const response = await fetch("/powers");
+  const response = await fetch("/locations");
   const result = await response.json();
   const powerid = document.querySelector("#deletetable");
   powerid.innerHTML = result.data.map(val => `<option value=${val[0]}>${val[0]}</option>`).join("");
 })();
 
 document.querySelector("#delete-button").addEventListener("click", async function () {
-  const id = document.getElementById("deletetable").value;
+  const locationName = document.getElementById("deletetable").value;
 
-  const response = await fetch(`/powers/${id}`, {
-    method: 'DELETE'
+  const response = await fetch(`/locations/${locationName}`, {
+    method: 'DELETE' 
   });
 
   const result = await response.json();
