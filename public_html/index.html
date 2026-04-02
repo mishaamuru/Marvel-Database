@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <!-- https://www.w3schools.com/howto/howto_js_vertical_tabs.asp -->
+     <!-- Applied this but for horizontal tabs -->
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'HomeTab')" id="defaultOpen">Home Tab</button>
         <button class="tablinks" onclick="openTab(event, 'ViewData')">View Data</button>
@@ -25,13 +27,13 @@
             <h2>Welcome To Marvel Database</h2>
         </div>
         <div class="content">
-            <p style="color: #b71c1c;">Please click one of the tab aboves to navigate to the other tabs. 
-                As our The domain of this application is the Marvel cinematic universe and 
-                related elements from the comic universe. It focuses on organizing information 
-                about superheroes and villains, including their powers, team or organizational 
-                information, and the universes they exist in (such as Earth-616). The database 
-                also captures how these elements relate to one another, such as the connections 
-                between characters and their powers or their membership in groups like the 
+            <p style="color: #b71c1c;">Please click one of the tab aboves to navigate to the other tabs.
+                As our The domain of this application is the Marvel cinematic universe and
+                related elements from the comic universe. It focuses on organizing information
+                about superheroes and villains, including their powers, team or organizational
+                information, and the universes they exist in (such as Earth-616). The database
+                also captures how these elements relate to one another, such as the connections
+                between characters and their powers or their membership in groups like the
                 Avengers or S.H.I.E.L.D</p>
         </div>
     </div>
@@ -55,6 +57,7 @@
                 </div>
                 <div class="attribute-row">
                     <label>Attribute(s):</label>
+                    <!-- https://stackoverflow.com/questions/19206919/how-to-create-checkbox-inside-dropdown -->
                     <div id="checks" class="dropdown-check-list" tabindex="100">
                         <span class="anchor">Select Attribute(s):</span>
                         <ul name="attributes" id="attributes" class="attributes">
@@ -107,7 +110,7 @@
                 <label>Add conditions to select:</label>
                 <div id="conditions">
                     <div class="condition-row">
-                        <select name="search-attribute" id="search-attribute" , class="search-attribute">
+                        <select name="search-attribute" class="search-attribute">
                             <option value="">Select Attribute</option>
                             <option value="ActorName">Actor Name</option>
                             <option value="Alias">Alias</option>
@@ -116,10 +119,10 @@
                             <option value="Species">Species</option>
                             <option value="PublicIdentity">Public Identity</option>
                         </select>
-                        <select name="equal" id="equal">
+                        <select name="equal" class="equal">
                             <option value="=">=</option>
                         </select>
-                        <input type="text" class="search-text" id="search-text" name="search"><br>
+                        <input type="text" class="search-text" name="search"><br>
                     </div>
                 </div>
 
@@ -144,6 +147,7 @@
                 </tr>
             </tbody>
         </table>
+        <p id="select-message"></p>
     </div>
 
     <!-- INSERT TAB -->
