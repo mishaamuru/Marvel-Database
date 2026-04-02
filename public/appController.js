@@ -123,7 +123,7 @@ router.delete("/locations/:locationName", async (req, res) => {
         const locationName = req.params.locationName;
         const exists = await validation.deleteValidate(locationName);
         if (!exists) {
-            res.status(422).json({error: "There is no power with Power ID: " + powerID});
+            res.status(422).json({error: "There is no Location with Name: " + locationName});
             return;
         }
         const deleteLocation = await appService.deleteLocation(locationName);
@@ -131,7 +131,7 @@ router.delete("/locations/:locationName", async (req, res) => {
             res.status(404).json({error: "Unable to delete"});
             return;
         }
-        res.status(200).json({success: "Able to delete Location with Name " + powerID});
+        res.status(200).json({success: "Able to delete Location with Name " + locationName});
         return;
     } catch (err) {
         res.status(500).json({ error: "Internal server error" });
