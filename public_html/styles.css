@@ -3,6 +3,8 @@ body {
 }
 
 /* background image */
+/* https://stackoverflow.com/questions/21786272/css-background-size-cover-background-attachment-fixed-clipping-background-im */
+/* Took informtion from that comment in the bottom */
 body::before {
     content: '';
     position: fixed;
@@ -10,13 +12,13 @@ body::before {
     background-image: url('marvel.jpg');
     background-size: cover;
     background-attachment: fixed;
-    /* filter: blur(8px); */
     transform: scale(1.05);
     z-index: -100;
     opacity: 0.6;
 }
 
 /* changed to horizontal nav bar */
+/* https://www.w3schools.com/howto/howto_js_vertical_tabs.asp */
 .tab {
     position: fixed;
     top: 0;
@@ -53,7 +55,9 @@ body::before {
 .tab button:hover {
     background-color: #da6b70;
 }
+/* End of tab citation */
 
+/* https://www.youtube.com/watch?v=cH0TC9gWiAg */
 /* Line hover */
 .tablinks::before {
     content: '';
@@ -74,6 +78,7 @@ body::before {
 .tablinks:focus::before {
     transform: scaleX(1);
 }
+/* End of tab hover citation */
 
 h2 {
     color: #b71c1c;
@@ -129,6 +134,7 @@ h2 {
     margin-bottom: 10px;
 }
 
+/* https://stackoverflow.com/questions/19206919/how-to-create-checkbox-inside-dropdown */
 .dropdown-check-list {
     display: inline-block;
     position: relative;
@@ -188,6 +194,7 @@ h2 {
 .dropdown-check-list.visible .attributes {
     display: block;
 }
+/* Ends of citation  */
 
 #Load,
 .and,
@@ -219,6 +226,8 @@ h2 {
     margin-bottom: 15px;
 }
 
+/* https://www.youtube.com/watch?v=xgXWrKB__ew */
+/* Took inspiration from here  */
 .tabcontent {
     margin-left: 0;
     margin-top: 60px;
@@ -228,6 +237,7 @@ h2 {
     min-height: calc(100vh - 60px);
     border-radius: 10px;
 }
+/* End of citation  */
 
 table {
     border-collapse: collapse;
@@ -326,7 +336,7 @@ th {
     padding-bottom: 1em;
 }
 
-#search-attribute {
+.search-attribute {
     flex: 1;
     padding: .5em;
     border-radius: 5px;
@@ -334,14 +344,14 @@ th {
     margin-top: 10px;
 }
 
-#equal {
+.equal {
     padding: .5em;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 70px;
 }
 
-#search-text {
+.search-text {
     flex: 2;
     padding: .5em;
     border-radius: 5px;
