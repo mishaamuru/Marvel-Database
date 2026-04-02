@@ -1,3 +1,4 @@
+
 //this class is just to make validation easier for the APIs
 class Validation {
 
@@ -55,7 +56,7 @@ class Validation {
     //helper for insert, checks for validation
     insertValidate(heroActorName, heroAlias, powerID, dateGained) {
         if (!Number.isInteger(powerID)) return "The Power ID must be an integer";
-        if (!isValidDate(dateGained)) return "The Date must be in a valid format";
+        //if (!isValidDate(dateGained)) return "The Date must be in a valid format";
         if (typeof heroActorName != "string") return "The Actor Name must be a string";
         if (typeof heroAlias != "string") return "The Alias Name must be a string";
         if (!heroActorName || !heroAlias || powerID === undefined || powerID === null || !dateGained) {
@@ -83,9 +84,6 @@ class Validation {
         if (!Number.isInteger(powerID)) {
             return false;
         }
-        const getPowers = await appService.getPowers();
-        const check = getPowers.filter((p) => p.ID === powerID);
-        if (check.length === 0) return false;
         return true;
     }
 
