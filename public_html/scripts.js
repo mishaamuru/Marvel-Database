@@ -1,3 +1,4 @@
+// https://www.w3schools.com/howto/howto_js_vertical_tabs.asp
 // Hides the tabs and only shows selected tab
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -23,6 +24,7 @@ document.getElementById("defaultOpen").click();
 
 // View data 
 // Checkmarks for the dropdown
+// https://stackoverflow.com/questions/19206919/how-to-create-checkbox-inside-dropdown
 var checkList = document.getElementById('checks');
 
 checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
@@ -32,6 +34,7 @@ checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
     checkList.classList.add('visible');
 }
 
+// https://stackoverflow.com/questions/14544104/checkbox-check-event-listener
 const checkedmarks = []
 
 document.querySelectorAll("#attributes input[type='checkbox']").forEach(box => {
@@ -44,6 +47,9 @@ document.querySelectorAll("#attributes input[type='checkbox']").forEach(box => {
   });
 });
 
+// used sample cpsc304 project
+// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch <- response.ok 
+// https://rgbstudios.org/blog/js-array-objects-table
 document.querySelector("#Load").addEventListener("click", async function () {
   if (checkedmarks.length === 0) {
     alert("Array is empty, no attributes selected");
@@ -73,19 +79,23 @@ document.querySelector("#Load").addEventListener("click", async function () {
 });
 
 function newCondition() {
-  return `<select name="search-attribute" class="search-attribute">
-                            <option value="">Select Attribute</option>
-                            <option value="ActorName">Actor Name</option>
-                            <option value="Alias">Alias</option>
-                            <option value="CharacterName">Character Name</option>
-                            <option value="Standing">Standing</option>
-                            <option value="Species">Species</option>
-                            <option value="PublicIdentity">Public Identity</option>
-                        </select>
-                        <select name="equal">
-                            <option value="=">=</option>
-                        </select>
-                        <input type="text" class="search-text" name="search"><br></br>`
+  return `
+  <select name="search-attribute" class="search-attribute">
+    <option value="">Select Attribute</option>
+    <option value="ActorName">Actor Name</option>
+    <option value="Alias">Alias</option>
+    <option value="CharacterName">Character Name</option>
+    <option value="Standing">Standing</option>
+    <option value="Species">Species</option>
+    <option value="PublicIdentity">Public Identity</option>
+  </select>
+                        
+  <select name="equal" class="equal">                          
+    <option value="=">=</option>
+  </select>
+  
+  <input type="text" class="search-text" name="search">
+`;                        
 }
 
 // Select Tab
@@ -117,6 +127,12 @@ document.getElementById("search-button").addEventListener("click", async functio
   const tableHead = document.querySelector("#select-thead");
   const tableBody = document.querySelector("#select-tbody");
 
+  if (response.ok) {
+    document.getElementById("select-message").textContent = result.success;
+  } else {
+    document.getElementById("select-message").textContent = result.error;
+  }
+
   if (result.data.length === 0) {
     console.log("No data returned");
     tableHead.innerHTML = "";
@@ -127,6 +143,8 @@ document.getElementById("search-button").addEventListener("click", async functio
   }
 });
 
+// https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+// https://www.w3schools.com/jsref/met_document_createelement.asp
 document.querySelector(".and").addEventListener("click", async function () {
   const newDiv = document.createElement("div");
   newDiv.classList.add("condition-row");
@@ -193,7 +211,7 @@ async function loadHeroHasPowerTable() {
   const response = await fetch("/powers");
   const result = await response.json();
   const powerid = document.querySelector("#updatetable");
-   powerid.innerHTML = result.data.map(val => `<option value=${val[0]}>${val[0]}</option>`).join("");
+  powerid.innerHTML = result.data.map(val => `<option value=${val[0]}>${val[0]}</option>`).join("");
 })();
 
 document.querySelector("#update-button").addEventListener("click", async function () {
@@ -235,7 +253,7 @@ document.querySelector("#delete-button").addEventListener("click", async functio
   const locationName = document.getElementById("deletetable").value;
 
   const response = await fetch(`/locations/${locationName}`, {
-    method: 'DELETE' 
+    method: 'DELETE'
   });
 
   const result = await response.json();
@@ -247,9 +265,8 @@ document.querySelector("#delete-button").addEventListener("click", async functio
   }
 });
 
-//TODO
 // Join 
-document.querySelector("#join").addEventListener("click", async function  () {
+document.querySelector("#join").addEventListener("click", async function () {
   const species = document.querySelector("#join-attribute").value;
   const response = await fetch("/superheroes/join-species", {
     method: 'POST',
