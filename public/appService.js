@@ -292,19 +292,17 @@ async function getVillains() {
 }
 
 //this will delete the tuples with this powerID
-async function deletePower(powerID) {
-    const powers = await getPowers();
-    const check = powers.filter((p) => p.ID === powerID);
-    if (check.length === 0) return false;
+async function deleteLocation(locationName) {
     return await withOracleDB(async (connection) => {
         const sql = `
-        DELETE FROM Power 
-        WHERE ID = :powerID`;
-        const result = await connection.execute(sql, {powerID}, { autoCommit: true });
-        return result.rowsAffected && result.rowsAffected > 0;
+            DELETE FROM Location
+            WHERE Name = :locationName
+        `;
+        const result = await connection.execute(sql, { locationName }, { autoCommit: true });
+        return result.rowsAffected > 0;
     }).catch(() => {
         return false;
-    })
+    });
 }
 
 //this will search through SuperHero and Select Tuples where 
@@ -493,7 +491,7 @@ module.exports = {
     getSuperheros,
     getVillains,
     getTeams,
-    deletePower,
+    deleteLocation,
     searchBody,
     universeProjection,
     getVillainStandingCount,

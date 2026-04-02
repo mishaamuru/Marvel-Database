@@ -81,7 +81,7 @@ class Validation {
     
     //validation for delete, to see if the powerID exists
     async deleteValidate(powerID) {
-        if (!Number.isInteger(powerID)) {
+        if (typeof powerID != "string") {
             return false;
         }
         return true;

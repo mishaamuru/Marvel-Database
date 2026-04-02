@@ -118,20 +118,20 @@ router.get("/powers", async (req, res) => {
 
 //this is for delete, and it is to delete from Power
 //How it is done: By specifying the primary key
-router.delete("/powers/:powerid", async (req, res) => {
+router.delete("/locations/:locationName", async (req, res) => {
     try {
-        const powerID = Number(req.params.powerid);
-        const exists = await validation.deleteValidate(powerID);
+        const locationName = req.params.locationName;
+        const exists = await validation.deleteValidate(locationName);
         if (!exists) {
             res.status(422).json({error: "There is no power with Power ID: " + powerID});
             return;
         }
-        const deletePower = await appService.deletePower(powerID);
-        if (!deletePower) {
+        const deleteLocation = await appService.deleteLocation(locationName);
+        if (!deleteLocation) {
             res.status(404).json({error: "Unable to delete"});
             return;
         }
-        res.status(200).json({success: "Able to delete Power with Power ID: " + powerID});
+        res.status(200).json({success: "Able to delete Location with Name " + powerID});
         return;
     } catch (err) {
         res.status(500).json({ error: "Internal server error" });
@@ -177,6 +177,7 @@ router.get("/universes", async (req, res) => {
     }
     const result = await appService.universeProjection(fields);
     res.status(200).json({data: result});
+    console.log("Rows deleted:", result.rowsAffected);
     return;
 
 })
