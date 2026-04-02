@@ -132,7 +132,7 @@ router.delete("/locations/:locationName", async (req, res) => {
         }
         const deleteLocation = await appService.deleteLocation(locationName);
         if (!deleteLocation) {
-            res.status(404).json({error: "Unable to delete"});
+            res.status(404).json({error: "INVALID: Foreign Key Present"});
             return;
         }
         res.status(200).json({success: "Able to delete Location with Name " + locationName});
