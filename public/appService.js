@@ -233,10 +233,8 @@ async function getPowers() {
             SELECT *
             FROM Power`;
         const result = await connection.execute(sql);
-        console.log("Power rows:", result.rows);
         return result.rows;
     }).catch(() => {
-        console.error("getPowers error:", err);
         return [];
     });
 }

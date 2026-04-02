@@ -111,7 +111,7 @@ router.put("/powers/:powerid", async (req, res) => {
 //Since for update, it needs to support powers, I need to make a get as well
 router.get("/powers", async (req, res) => {
     const getPowers = await appService.getPowers();
-    res.status(200).json({ data: getPowers });
+    res.status(200).json({ data: getPowers.rows });
 });
 
 
