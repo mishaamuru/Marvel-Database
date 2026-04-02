@@ -517,6 +517,31 @@ INSERT INTO
 VALUES
     ('Sokovia', 'Human', 'Earth', 'Unknown');
 
+INSERT INTO
+    Location
+VALUES
+    ('Xandar', 'Xandarian', 'Xandar', 'Unknown');
+
+INSERT INTO
+    Location
+VALUES
+    ('Ego', 'Celestial', 'Cosmic', '1');
+
+INSERT INTO
+    Location
+VALUES
+    ('Vormir', 'Unknown', 'Vormir', 'Unknown');
+
+INSERT INTO
+    Location
+VALUES
+    ('New York', 'Human', 'Earth', '8400000');
+
+INSERT INTO
+    Location
+VALUES
+    ('Kamar-Taj', 'Human', 'Earth', 'Unknown');
+
 --      STONE COLOR     --
 CREATE TABLE
     StoneColour (
