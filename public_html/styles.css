@@ -80,7 +80,8 @@ h2 {
     padding: .05em;
 }
 
-.select-row, .delete-row {
+.select-row,
+.delete-row {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -94,9 +95,13 @@ h2 {
     margin-bottom: 10px;
 }
 
-#selecttable, #deletetable, 
-#join-attribute, #viewtable,
-#updatetable, #firsttable, #secondtable {
+#selecttable,
+#deletetable,
+#join-attribute,
+#viewtable,
+#updatetable,
+#firsttable,
+#secondtable {
     flex: 1;
     padding: .5em;
     border-radius: 5px;
@@ -114,7 +119,9 @@ h2 {
     white-space: nowrap;
 }
 
-.update-row, .first-table, .second-table {
+.update-row,
+.first-table,
+.second-table {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -136,6 +143,7 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     width: calc(100% - 130px);
+    background-color: white;
 }
 
 .dropdown-check-list .anchor::after {
@@ -170,21 +178,23 @@ h2 {
 }
 
 .dropdown-check-list ul.attributes li {
-  list-style: none;
+    list-style: none;
 }
 
 .dropdown-check-list.visible .anchor {
-  color: #b71c1c;
+    color: #b71c1c;
 }
 
 .dropdown-check-list.visible .attributes {
-  display: block;
+    display: block;
 }
 
 #Load,
 .and,
-.or, #search-button, 
-#join, #delete-button {
+.or,
+#search-button,
+#join,
+#delete-button {
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #b71c1c;
@@ -246,7 +256,8 @@ th {
     padding-bottom: 1em;
 }
 
-#insert-button, #update-button {
+#insert-button,
+#update-button {
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #b71c1c;
@@ -259,8 +270,10 @@ th {
     margin-top: 10px;
 }
 
-#having-button, #nested-button,
-#division-button, #groupby-button {
+#having-button,
+#nested-button,
+#division-button,
+#groupby-button {
     padding: .5em 1.2em;
     border-radius: 5px;
     background-color: #b71c1c;
@@ -276,15 +289,18 @@ th {
 #powerid,
 #heroActorName,
 #heroAlias,
-#dateGained, #update-skillset,
-#update-weapon, #update-weaponType {
+#dateGained,
+#update-skillset,
+#update-weapon,
+#update-weaponType {
     padding: .5em;
     border-radius: 5px;
     width: 84%;
     margin-top: 5px;
 }
 
-#InsertData label, #Update label {
+#InsertData label,
+#Update label {
     display: inline-block;
     width: 150px;
     padding-bottom: 1em;
