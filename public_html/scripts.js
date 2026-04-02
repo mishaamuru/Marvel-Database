@@ -279,6 +279,12 @@ document.querySelector("#join").addEventListener("click", async function () {
   const tableHead = document.querySelector("#join-thead");
   const tableBody = document.querySelector("#join-tbody");
 
+  if (response.ok) {
+    document.getElementById("join-message").textContent = result.success;
+  } else {
+    document.getElementById("join-message").textContent = result.error;
+  }
+
   if (result.data.length === 0) {
     console.log("No data returned");
     tableHead.innerHTML = "";
