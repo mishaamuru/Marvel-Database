@@ -249,6 +249,28 @@ document.querySelector("#delete-button").addEventListener("click", async functio
 
 //TODO
 // Join 
+document.querySelector("#join").addEventListener("click", async function  () {
+  const species = document.querySelector("#join-attribute").value;
+  const response = await fetch("/superheroes/join-species", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ species })
+  });
+  const result = await response.json();
+  const tableHead = document.querySelector("#join-thead");
+  const tableBody = document.querySelector("#join-tbody");
+
+  if (result.data.length === 0) {
+    console.log("No data returned");
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+  } else {
+    tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+    tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+  }
+});
 
 // Advanced Query Tab
 document.querySelector("#groupby-button").addEventListener("click", async function () {
