@@ -1,4 +1,4 @@
-/* -- cmd + f 'name of the table' + "table" to find which table you're looking for
+-- cmd + f 'name of the table' + "table" to find which table you're looking for
 DROP TABLE Features CASCADE CONSTRAINTS;
 DROP TABLE AppearsIn CASCADE CONSTRAINTS;
 DROP TABLE MemberOfTeam CASCADE CONSTRAINTS;
@@ -24,7 +24,7 @@ DROP TABLE TakesPlace CASCADE CONSTRAINTS;
 DROP TABLE MemberOfOrganization CASCADE CONSTRAINTS;
 DROP TABLE LocatedIn CASCADE CONSTRAINTS;
 DROP TABLE SetIn CASCADE CONSTRAINTS;
-DROP TABLE ExistsIn CASCADE CONSTRAINTS; */
+DROP TABLE ExistsIn CASCADE CONSTRAINTS;
 --      SUPERHERO TABLE     --
 CREATE TABLE
     Superhero (
