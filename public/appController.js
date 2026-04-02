@@ -111,7 +111,7 @@ router.put("/powers/:powerid", async (req, res) => {
 //Since for update, it needs to support powers, I need to make a get as well
 router.get("/powers", async (req, res) => {
     const getPowers = await appService.getPowers();
-    res.status(200).json({ data: getPowers.rows });
+    res.status(200).json({ data: getPowers });
 });
 
 
@@ -172,7 +172,7 @@ router.get("/universes", async (req, res) => {
     const fields = fieldParams.split(",");
     const validationCheck = validation.validateProjection(fields);
     if (validationCheck !== "everything looks good") {
-        res.status(422).json({error: validation});
+        res.status(422).json({error: validationCheck});
         return;
     }
     const result = await appService.universeProjection(fields);
@@ -218,7 +218,7 @@ router.get("/superheroes/space-stone-powers", async (req, res) => {
         const result = await appService.getSuperheroesWithSpaceStonePowers();
         return res.status(200).json({ data: result });
     } catch (error) {
-        console.error(err);
+        console.error(error);
         res.status(500).json({ error: "Internal server error" });
         return;
     }

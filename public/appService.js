@@ -185,7 +185,7 @@ async function insertHeroHasPower(heroActorName, heroAlias, powerID, dateGained)
         VALUES (:heroActorName, :heroAlias, :powerID, TO_DATE(:dateGained, 'YYYY-MM-DD'))
         `;
 
-        result = await connection.execute(insertSql, 
+        const result = await connection.execute(insertSql, 
             {heroActorName, heroAlias, powerID, dateGained},
             {autoCommit: true }
         );
@@ -293,6 +293,9 @@ async function getVillains() {
 
 //this will delete the tuples with this powerID
 async function deletePower(powerID) {
+    const powers = await getPowers();
+    const check = powers.filter((p) => p.ID === powerID);
+    if (check.length === 0) return false;
     return await withOracleDB(async (connection) => {
         const sql = `
         DELETE FROM Power 
