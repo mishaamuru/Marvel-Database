@@ -239,6 +239,18 @@ async function getPowers() {
     });
 }
 
+async function getLocations() {
+    return await withOracleDB(async (connection) => {
+        const sql = `
+            SELECT *
+            FROM Location`;
+        const result = await connection.execute(sql);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
 //this will retieve all tables for superhero
 async function getSuperheros() {
     return await withOracleDB(async (connection) => {
@@ -499,5 +511,6 @@ module.exports = {
     getSuperheroesWithSpaceStonePowers,
     getSuperheroesAndPowersBySpecies,
     getTopSpecies,
-    getHeroHasPower
+    getHeroHasPower,
+    getLocations
 };

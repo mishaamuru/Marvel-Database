@@ -114,6 +114,10 @@ router.get("/powers", async (req, res) => {
     res.status(200).json({ data: getPowers });
 });
 
+router.get("/locations", async (req, res) => {
+    const getLocations = await appService.getLocations();
+    res.status(200).json({ data: getLocations });
+});
 
 
 //this is for delete, and it is to delete from Power
