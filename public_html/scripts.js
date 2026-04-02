@@ -1,20 +1,3 @@
-const express = require('express');
-const path = require('path');
-const app = express();
-
-const appController = require('./public/appController');
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use(express.static(path.join(__dirname, 'public_html')));
-
-app.use('/', appController);
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public_html', 'index.html'));
-});
-
 // Hides the tabs and only shows selected tab
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -210,7 +193,11 @@ async function loadHeroHasPowerTable() {
   const response = await fetch("/powers");
   const result = await response.json();
   const powerid = document.querySelector("#updatetable");
-  powerid.innerHTML = result.data.map(val => `<option value=${val[0]}>${val[0]}</option>`).join("");
+  options = ""
+  for (let i = 0; i < result.length; i++) {
+    options += `<option value=${result[i]}>${result[i]}</option>`.join("");
+  }
+  document.getElementById("updatetable").innerHTML = options;
 })();
 
 document.querySelector("#update-button").addEventListener("click", async function () {
@@ -307,7 +294,22 @@ document.querySelector("#having-button").addEventListener("click", async functio
 });
 
 document.querySelector("#nested-button").addEventListener("click", async function () {
-  // TODO
+  const response = await fetch("/superheroes/top-species", {
+    method: 'GET',
+  });
+
+  const result = await response.json();
+  const tableHead = document.querySelector("#nested-thead");
+  const tableBody = document.querySelector("#nested-tbody");
+
+  if (result.data.length === 0) {
+    console.log("No data returned");
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "<tr><td>No results found</td></tr>";
+  } else {
+    tableHead.innerHTML = `<tr>${Object.keys(result.data[0]).map(item => `<th>${item}</th>`).join("")}</tr>`;
+    tableBody.innerHTML = result.data.map(row => `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join("")}</tr>`).join("");
+  }
 });
 
 document.querySelector("#division-button").addEventListener("click", async function () {

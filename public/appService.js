@@ -232,7 +232,9 @@ async function getPowers() {
         const sql = `
             SELECT *
             FROM Power`;
-        const result = await connection.execute(sql);
+        const result = await connection.execute(sql, params, {
+            outFormat: oracledb.OUT_FORMAT_OBJECT
+        });
         return result.rows;
     }).catch(() => {
         return [];
