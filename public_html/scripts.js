@@ -193,11 +193,7 @@ async function loadHeroHasPowerTable() {
   const response = await fetch("/powers");
   const result = await response.json();
   const powerid = document.querySelector("#updatetable");
-  options = ""
-  for (let i = 0; i < result.length; i++) {
-    options += `<option value=${result[i]}>${result[i]}</option>`.join("");
-  }
-  document.getElementById("updatetable").innerHTML = options;
+   powerid.innerHTML = result.data.map(val => `<option value=${val[0]}>${val[0]}</option>`).join("");
 })();
 
 document.querySelector("#update-button").addEventListener("click", async function () {
