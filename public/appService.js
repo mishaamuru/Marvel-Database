@@ -1,3 +1,4 @@
+//referenced the example project to create a shell of appService.js
 const oracledb = require('oracledb');
 require('dotenv').config(); // loads .env automatically
 
@@ -105,6 +106,7 @@ async function initiateDemotable() {
 async function insertDemotable(id, name) {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute(
+            //autoCommit instruction was found through stack exchange
             `INSERT INTO DEMOTABLE (id, name) VALUES (:id, :name)`,
             [id, name],
             { autoCommit: true }
