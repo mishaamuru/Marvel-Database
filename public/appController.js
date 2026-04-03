@@ -2,7 +2,7 @@ const express = require('express');
 const appService = require('./appService');
 const validation = require('../validation');
 const router = express.Router();
-
+//created REST APIs through my knowledge and reference from CPSC 310
 //checking for connection
 router.get('/check-db-connection', async (req, res) => {
     const isConnect = await appService.testOracleConnection();
